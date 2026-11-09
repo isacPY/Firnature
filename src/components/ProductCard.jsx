@@ -56,30 +56,30 @@ export const ProductCard = React.memo(function ProductCard({
 
         {/* Human Scale Silhouette Overlay (Toggled via [ Scale ] button) */}
         {showScale && (
-          <div className="absolute inset-0 bg-ink/75 backdrop-blur-xs flex items-center justify-center p-4 z-20 animate-in fade-in duration-200">
+          <div className="absolute inset-0 bg-ink/90 backdrop-blur-xs flex items-center justify-center p-4 z-20 animate-in fade-in duration-200">
             <div className="relative w-full h-full flex items-end justify-center pb-6">
               
               {/* Proportional Human Figure Icon (Standard 1.75m Reference) */}
-              <div className="flex flex-col items-center mr-6 text-cream/75">
+              <div className="flex flex-col items-center mr-6 text-cream">
                 <svg className="w-12 h-28 stroke-current fill-none stroke-[1.2]" viewBox="0 0 24 64">
                   {/* Head */}
                   <circle cx="12" cy="8" r="6" />
                   {/* Torso & Legs */}
                   <path d="M12 14v22M12 22h-8v12M12 22h8v12M12 36l-5 24M12 36l5 24" />
                 </svg>
-                <span className="font-mono text-[9px] uppercase tracking-wider text-cream/70 mt-1">
+                <span className="font-mono text-[9px] uppercase tracking-wider text-cream mt-1">
                   1.75 m Reference
                 </span>
               </div>
 
               {/* Dimension Metrics */}
               <div className="bg-ink/90 border border-white/20 p-3 rounded-sm font-mono text-[11px] text-cream space-y-1">
-                <span className="text-red uppercase block font-semibold">Proportions</span>
+                <span className="text-cream uppercase block font-semibold">Proportions</span>
                 <span className="block">{product.dimensions}</span>
                 {product.seatHeight && (
-                  <span className="block text-cream/70 text-[10px]">{product.seatHeight}</span>
+                  <span className="block text-cream text-[10px]">{product.seatHeight}</span>
                 )}
-                <span className="block text-cream/50 text-[9px]">{product.weight || 'Net Weight: 35 kg'}</span>
+                <span className="block text-cream/80 text-[9px]">{product.weight || 'Net Weight: 35 kg'}</span>
               </div>
             </div>
 
@@ -87,7 +87,7 @@ export const ProductCard = React.memo(function ProductCard({
             <button
               type="button"
               onClick={toggleScaleOverlay}
-              className="absolute top-3 right-3 text-cream/75 hover:text-white font-mono text-xs p-1"
+              className="absolute top-3 right-3 text-cream hover:text-white font-mono text-xs p-1"
             >
               ✕ Close
             </button>
@@ -143,13 +143,13 @@ export const ProductCard = React.memo(function ProductCard({
         <div className="absolute bottom-3 inset-x-3 flex items-center justify-between z-10">
           {/* Swatches dots */}
           {swatches.length > 1 && (
-            <div className="flex items-center gap-1.5 bg-cream/90 backdrop-blur-md px-2 py-1 rounded-full border border-ink/10 shadow-xs">
+            <div className="flex items-center gap-2.5 bg-cream/90 backdrop-blur-md px-2 py-1 rounded-full border border-ink/10 shadow-xs">
               {swatches.map((swatch, idx) => (
                 <button
                   key={swatch.id}
                   type="button"
                   onClick={(e) => handleSelectSwatch(e, idx)}
-                  className={`w-4 h-4 rounded-full border transition-transform cursor-pointer ${
+                  className={`w-6 h-6 rounded-full border transition-transform cursor-pointer ${
                     activeSwatchIndex === idx
                       ? 'border-red scale-110 ring-1 ring-red/60 shadow-xs'
                       : 'border-ink/20 opacity-75 hover:opacity-100 hover:scale-105'
@@ -193,7 +193,7 @@ export const ProductCard = React.memo(function ProductCard({
             {currentSwatch.name !== 'Primary Finish' ? `${currentSwatch.name} • ` : ''}{product.materials}
           </p>
 
-          <span className="font-mono text-[10px] text-grey/80 tracking-wider block mb-3">
+          <span className="font-mono text-[10px] text-grey tracking-wider block mb-3">
             {product.dimensions}
           </span>
 

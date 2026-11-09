@@ -83,7 +83,7 @@ export const PRODUCTS = [
     swatches: [
       { id: "carmine", name: "Carmine Bouclé", colorHex: "#C80818", image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp" },
       { id: "chalk", name: "Chalk Linen", colorHex: "#EAE5DA", image: "/images/products/photo-1567538096630-e0c55bd6374c-1200.webp" },
-      { id: "charcoal", name: "Charcoal Wool", colorHex: "#222120", image: "https://images.unsplash.com/photo-1580481077112-9213197f223a?auto=format&fit=crop&w=800&q=75" }
+      { id: "charcoal", name: "Charcoal Wool", colorHex: "#222120", image: "/images/products/larc-charcoal-chair-1200.webp" }
     ]
   },
   {
@@ -199,7 +199,7 @@ export const PRODUCTS = [
     description: "Minimalist Japanese-joinery daybed framed in blackened ash with custom saddle leather bolster tie-downs.",
     swatches: [
       { id: "canvas", name: "Natural Canvas", colorHex: "#E5DAC9", image: "/images/products/photo-1505693416388-ac5ce068fe85-1200.webp" },
-      { id: "saddle", name: "Saddle Tan Leather", colorHex: "#8B4513", image: "https://images.unsplash.com/photo-1540518614846-7ede433c4b69?auto=format&fit=crop&w=800&q=75" }
+      { id: "saddle", name: "Saddle Tan Leather", colorHex: "#8B4513", image: "/images/products/koto-saddle-leather-1200.webp" }
     ]
   },
   {
@@ -259,7 +259,7 @@ export const PRODUCTS = [
     provenance: "Gotland Organic Shearling / Danish Oak",
     leadTime: "6 — 8 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1580481077112-9213197f223a?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/dune-occasional-chair-1200.webp",
     description: "Organic sculptural seating object upholstered in untrimmed Swedish shearling with rounded oak cylindrical legs."
   },
   {

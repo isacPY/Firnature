@@ -46,7 +46,7 @@ export function Footer() {
           {/* Col 1: Brand Manifesto & Year */}
           <div className="md:col-span-5 flex flex-col justify-between">
             <div>
-              <span className="font-display text-xs sm:text-sm text-red tracking-[0.2em] uppercase block mb-3">
+              <span className="font-display text-xs sm:text-sm text-cream tracking-[0.2em] uppercase block mb-3">
                 Architectural Monoliths
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-light text-cream leading-snug tracking-tight max-w-md">
@@ -62,7 +62,7 @@ export function Footer() {
 
           {/* Col 2: Navigation Links */}
           <div className="md:col-span-3 space-y-3 font-mono text-xs uppercase tracking-widest text-cream/70">
-            <span className="font-display text-xs text-red tracking-wider block mb-4">
+            <span className="font-display text-xs text-cream tracking-wider block mb-4">
               Explore
             </span>
             <div>
@@ -96,7 +96,7 @@ export function Footer() {
               <button
                 type="button"
                 onClick={() => openAppointment()}
-                className="hover:text-red transition-colors text-left uppercase font-mono block py-1 cursor-pointer"
+                className="hover:text-red transition-colors text-left uppercase font-mono block py-2 cursor-pointer"
               >
                 Book VIP Viewing
               </button>
@@ -105,7 +105,7 @@ export function Footer() {
 
           {/* Col 3: Direct Flagship Concierge */}
           <div className="md:col-span-4 space-y-4 font-mono text-xs text-cream/70">
-            <span className="font-display text-xs text-red tracking-wider block mb-4">
+            <span className="font-display text-xs text-cream tracking-wider block mb-4">
               Concierge & Flagship
             </span>
 
@@ -119,7 +119,7 @@ export function Footer() {
             <div className="pt-2 space-y-1.5">
               <a
                 href={`tel:+${BRAND_CONFIG.showroom.phone.replace(/[^0-9]/g, '')}`}
-                className="hover:text-red transition-colors flex items-center gap-2"
+                className="hover:text-red transition-colors flex items-center gap-2 py-1.5"
               >
                 <Phone className="w-3.5 h-3.5 text-red" />
                 <span>{BRAND_CONFIG.showroom.displayPhone}</span>
@@ -127,7 +127,7 @@ export function Footer() {
 
               <a
                 href={`mailto:${BRAND_CONFIG.showroom.email}`}
-                className="hover:text-red transition-colors flex items-center gap-2"
+                className="hover:text-red transition-colors flex items-center gap-2 py-1.5"
               >
                 <Mail className="w-3.5 h-3.5 text-red" />
                 <span>{BRAND_CONFIG.showroom.email}</span>
@@ -137,7 +137,7 @@ export function Footer() {
                 href={buildWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-red transition-colors flex items-center gap-2 pt-1"
+                className="hover:text-red transition-colors flex items-center gap-2 py-1.5"
               >
                 <ArrowUpRight className="w-3.5 h-3.5 text-red" />
                 <span>Direct WhatsApp Concierge</span>

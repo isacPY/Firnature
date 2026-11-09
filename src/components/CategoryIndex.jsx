@@ -22,7 +22,7 @@ const CategoryRowList = React.memo(function CategoryRowList({ onSelect, isOverla
           {isOverlay ? (
             <span className="font-serif italic text-[clamp(1.9rem,4vw,3.6rem)] text-cream tracking-tight font-light group-hover:underline transition-colors duration-200">
               {cat.name}
-              <sup className="font-mono text-xs sm:text-sm text-cream/80 ml-2 not-italic">
+              <sup className="font-mono text-xs sm:text-sm text-cream ml-2 not-italic">
                 (0{cat.count})
               </sup>
             </span>
@@ -133,7 +133,7 @@ export function CategoryIndex() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="text-left font-mono text-[10px] text-cream/80 uppercase tracking-widest">
+            <div className="text-left font-mono text-[10px] text-cream uppercase tracking-widest">
               <span>{currentCategory.count} Pieces</span>
               <span className="block text-cream font-bold">In Showroom</span>
             </div>
@@ -141,7 +141,7 @@ export function CategoryIndex() {
 
           {/* Right Floating Category Thumbnail inside red band */}
           <div className="hidden md:flex items-center gap-3 text-right">
-            <div className="font-mono text-[10px] text-cream/80 uppercase tracking-widest">
+            <div className="font-mono text-[10px] text-cream uppercase tracking-widest">
               <span>Archetype</span>
               <span className="block text-cream font-bold">0{activeIdx + 1} of 0{DISPLAY_CATEGORIES.length}</span>
             </div>

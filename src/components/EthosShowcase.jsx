@@ -128,10 +128,10 @@ export function EthosShowcase() {
       >
         {/* Top Header Row */}
         <div className="shrink-0 pb-3 border-b border-white/15">
-          <span className="font-mono text-[10px] sm:text-[11px] text-white/80 uppercase tracking-[0.2em] font-semibold block">
+          <span className="font-mono text-[10px] sm:text-[11px] text-white uppercase tracking-[0.2em] font-semibold block">
             03 — ARCHETYPES & LIGHTING
           </span>
-          <p className="font-serif italic text-xs text-white/70 mt-0.5">
+          <p className="font-serif italic text-xs text-white mt-0.5">
             Curated monolithic furniture & lighting collections
           </p>
         </div>
@@ -150,7 +150,7 @@ export function EthosShowcase() {
                 className={`w-full rounded-full py-2.5 sm:py-3 px-4 sm:px-5 flex items-center justify-between transition-all duration-200 text-left cursor-pointer box-border ${
                   isActive
                     ? 'bg-white text-ink shadow-lg shadow-black/25 ring-2 ring-white/60'
-                    : 'bg-white/15 hover:bg-white/25 text-white border border-white/20 backdrop-blur-xs hover:translate-x-0.5'
+                    : 'bg-black/25 hover:bg-black/35 text-white border border-white/20 backdrop-blur-xs hover:translate-x-0.5'
                 }`}
                 aria-pressed={isActive}
                 aria-label={`View ${pillar.title}`}
@@ -171,7 +171,7 @@ export function EthosShowcase() {
                   {/* Pill Label */}
                   <span
                     className={`font-display text-xs sm:text-sm tracking-[0.08em] uppercase truncate ${
-                      isActive ? 'font-bold text-ink' : 'font-medium text-white/95'
+                      isActive ? 'font-bold text-ink' : 'font-medium text-white'
                     }`}
                   >
                     {pillar.title}
@@ -181,7 +181,7 @@ export function EthosShowcase() {
                 {/* Right Piece Count Tag */}
                 <span
                   className={`font-mono text-[10px] sm:text-[11px] shrink-0 ml-2 ${
-                    isActive ? 'text-ink/60' : 'text-white/60'
+                    isActive ? 'text-ink/60' : 'text-white'
                   }`}
                 >
                   {pillar.pieceCount}
@@ -192,7 +192,7 @@ export function EthosShowcase() {
         </div>
 
         {/* Bottom Status Row */}
-        <div className="shrink-0 pt-3 border-t border-white/15 flex items-center justify-between text-white/70">
+        <div className="shrink-0 pt-3 border-t border-white/15 flex items-center justify-between text-white">
           <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-widest">
             Select Category to Inspect
           </span>
@@ -217,7 +217,7 @@ export function EthosShowcase() {
 
           <div className="ml-auto flex items-center gap-2 bg-ink/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 shadow-md">
             <Palette className="w-3.5 h-3.5 text-cream/70" />
-            <span className="font-mono text-[10px] text-cream/80 uppercase tracking-widest mr-1">
+            <span className="font-mono text-[10px] text-cream uppercase tracking-widest mr-1">
               Palette:
             </span>
             <div className="flex items-center gap-1.5">
@@ -265,12 +265,12 @@ export function EthosShowcase() {
             
             {/* Top Label */}
             <div className="absolute top-4 left-5 sm:top-6 sm:left-7">
-              <span className="font-mono text-[9px] sm:text-[10px] text-white/80 uppercase tracking-widest">
+              <span className="font-mono text-[9px] sm:text-[10px] text-white uppercase tracking-widest">
                 {leftDroppedPillar.cardSubtitle}
               </span>
-              <h4 className="font-display text-sm sm:text-base text-white uppercase tracking-wider mt-0.5">
+              <h3 className="font-display text-sm sm:text-base text-white uppercase tracking-wider mt-0.5">
                 {leftDroppedPillar.cardTitle}
-              </h4>
+              </h3>
             </div>
 
             {/* Embedded Badge */}
@@ -312,7 +312,7 @@ export function EthosShowcase() {
                 <h3 className="font-display text-lg sm:text-2xl md:text-3xl text-white uppercase tracking-wider drop-shadow-md mt-1">
                   {currentPillar.cardTitle}
                 </h3>
-                <span className="font-mono text-[10px] sm:text-[11px] text-white/70 block mt-0.5">
+                <span className="font-mono text-[10px] sm:text-[11px] text-white block mt-0.5">
                   {currentPillar.cardDimensions}
                 </span>
               </div>
@@ -359,7 +359,7 @@ export function EthosShowcase() {
         {/* Bottom Bar: Watermark + Previous / Next Arrow Controls */}
         <div className="w-full flex items-center justify-between z-30 pt-2">
           <span
-            className="font-serif italic text-2xl sm:text-3xl tracking-tight opacity-40 select-none block"
+            className="font-serif italic text-2xl sm:text-3xl tracking-tight opacity-80 select-none block"
             style={{ color: currentPalette.watermarkColor }}
           >
             atelier°
