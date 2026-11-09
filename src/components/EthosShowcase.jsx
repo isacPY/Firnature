@@ -44,9 +44,9 @@ export function EthosShowcase() {
 
   // Active pillar items
   const currentPillar = ETHOS_PILLARS[activeIdx] || ETHOS_PILLARS[0];
+  const leftDroppedPillar = ETHOS_PILLARS[prevIdx] || ETHOS_PILLARS[ETHOS_PILLARS.length - 1];
   const currentSrcset = getLocalSrcset(currentPillar.image, '(max-width: 768px) 94vw, 700px');
   const leftSrcset = getLocalSrcset(leftDroppedPillar.image, '(max-width: 768px) 94vw, 700px');
-  const leftDroppedPillar = ETHOS_PILLARS[prevIdx] || ETHOS_PILLARS[ETHOS_PILLARS.length - 1];
 
   // Current active palette
   const currentPalette = useMemo(() => {
