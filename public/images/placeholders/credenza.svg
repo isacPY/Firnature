@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="600" height="800" fill="#EAE6DF"/>
+  
+  <!-- Subtle Blueprint Grid -->
+  <defs>
+    <pattern id="archGridCredenza" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#8A8680" stroke-width="0.5" stroke-opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="800" fill="url(#archGridCredenza)"/>
+
+  <!-- Border Hairline -->
+  <rect x="28" y="28" width="544" height="744" fill="none" stroke="#8A8680" stroke-width="1" stroke-opacity="0.35"/>
+  <rect x="36" y="36" width="528" height="728" fill="none" stroke="#8A8680" stroke-width="0.5" stroke-opacity="0.2"/>
+
+  <!-- Technical Corner Marks -->
+  <path d="M 20 28 L 36 28 M 28 20 L 28 36" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 580 28 L 564 28 M 572 20 L 572 36" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 20 772 L 36 772 M 28 780 L 28 764" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 580 772 L 564 772 M 572 780 L 572 764" stroke="#E10A1D" stroke-width="1.5"/>
+
+  <!-- Header Typography -->
+  <text x="50" y="70" font-family="'Newsreader', Georgia, serif" font-size="11" letter-spacing="3" fill="#8A8680">ATELIER° ARCHITECTURAL STUDY</text>
+  <text x="50" y="92" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="20" fill="#141414">Brutalist Fluted Credenza</text>
+  <text x="550" y="70" text-anchor="end" font-family="monospace" font-size="10" fill="#E10A1D">PLATE NO. 04</text>
+  <text x="550" y="86" text-anchor="end" font-family="monospace" font-size="9" fill="#8A8680">SCALE 1:12</text>
+
+  <!-- Divider Line -->
+  <line x1="50" y1="110" x2="550" y2="110" stroke="#141414" stroke-width="0.75" stroke-opacity="0.2"/>
+
+  <!-- Credenza Vector Artwork -->
+  <g transform="translate(50, 230)">
+    <!-- Floor Shadow -->
+    <ellipse cx="250" cy="285" rx="210" ry="16" fill="#141414" fill-opacity="0.06"/>
+    <line x1="20" y1="285" x2="480" y2="285" stroke="#8A8680" stroke-width="1" stroke-dasharray="4 4"/>
+
+    <!-- Slender Brass Underframe Legs -->
+    <line x1="75" y1="210" x2="65" y2="285" stroke="#9E8148" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="120" y1="210" x2="115" y2="285" stroke="#9E8148" stroke-width="3" stroke-linecap="round"/>
+    <line x1="380" y1="210" x2="385" y2="285" stroke="#9E8148" stroke-width="3" stroke-linecap="round"/>
+    <line x1="425" y1="210" x2="435" y2="285" stroke="#9E8148" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="60" y1="270" x2="440" y2="270" stroke="#9E8148" stroke-width="2"/>
+
+    <!-- Main Credenza Body (Smoked Oak) -->
+    <rect x="50" y="80" width="400" height="135" rx="4" fill="#3D3730" stroke="#141414" stroke-width="2.5"/>
+
+    <!-- Fluted Vertical Tambour Lines (Repeated fine lines) -->
+    <g stroke="#26221D" stroke-width="1.8">
+      <line x1="65" y1="83" x2="65" y2="212"/>
+      <line x1="78" y1="83" x2="78" y2="212"/>
+      <line x1="91" y1="83" x2="91" y2="212"/>
+      <line x1="104" y1="83" x2="104" y2="212"/>
+      <line x1="117" y1="83" x2="117" y2="212"/>
+      <line x1="130" y1="83" x2="130" y2="212"/>
+      <line x1="143" y1="83" x2="143" y2="212"/>
+      <!-- Door split 1 -->
+      <line x1="150" y1="80" x2="150" y2="215" stroke="#141414" stroke-width="3"/>
+      <line x1="163" y1="83" x2="163" y2="212"/>
+      <line x1="176" y1="83" x2="176" y2="212"/>
+      <line x1="189" y1="83" x2="189" y2="212"/>
+      <line x1="202" y1="83" x2="202" y2="212"/>
+      <line x1="215" y1="83" x2="215" y2="212"/>
+      <line x1="228" y1="83" x2="228" y2="212"/>
+      <line x1="241" y1="83" x2="241" y2="212"/>
+      <!-- Center Door split -->
+      <line x1="250" y1="80" x2="250" y2="215" stroke="#141414" stroke-width="3"/>
+      <line x1="263" y1="83" x2="263" y2="212"/>
+      <line x1="276" y1="83" x2="276" y2="212"/>
+      <line x1="289" y1="83" x2="289" y2="212"/>
+      <line x1="302" y1="83" x2="302" y2="212"/>
+      <line x1="315" y1="83" x2="315" y2="212"/>
+      <line x1="328" y1="83" x2="328" y2="212"/>
+      <line x1="341" y1="83" x2="341" y2="212"/>
+      <!-- Door split 3 -->
+      <line x1="350" y1="80" x2="350" y2="215" stroke="#141414" stroke-width="3"/>
+      <line x1="363" y1="83" x2="363" y2="212"/>
+      <line x1="376" y1="83" x2="376" y2="212"/>
+      <line x1="389" y1="83" x2="389" y2="212"/>
+      <line x1="402" y1="83" x2="402" y2="212"/>
+      <line x1="415" y1="83" x2="415" y2="212"/>
+      <line x1="428" y1="83" x2="428" y2="212"/>
+    </g>
+
+    <!-- Top Surface Slab (Smoked oak overhang) -->
+    <rect x="46" y="74" width="408" height="9" rx="1" fill="#4D453D" stroke="#141414" stroke-width="2"/>
+    <!-- Minimalist Brass Door Hardware Knobs -->
+    <circle cx="140" cy="148" r="3.5" fill="#E10A1D"/>
+    <circle cx="160" cy="148" r="3.5" fill="#C5A059"/>
+    <circle cx="340" cy="148" r="3.5" fill="#C5A059"/>
+    <circle cx="360" cy="148" r="3.5" fill="#C5A059"/>
+
+    <!-- Dimension Witness Lines -->
+    <g stroke="#8A8680" stroke-width="0.75">
+      <line x1="46" y1="310" x2="454" y2="310"/>
+      <line x1="46" y1="305" x2="46" y2="315"/>
+      <line x1="454" y1="305" x2="454" y2="315"/>
+      <text x="250" y="325" text-anchor="middle" font-family="monospace" font-size="9" fill="#141414">2200 mm</text>
+
+      <line x1="480" y1="74" x2="480" y2="285"/>
+      <line x1="475" y1="74" x2="485" y2="74"/>
+      <line x1="475" y1="285" x2="485" y2="285"/>
+      <text x="495" y="180" font-family="monospace" font-size="9" fill="#141414" transform="rotate(90 495 180)">820 mm</text>
+    </g>
+  </g>
+
+  <!-- Technical Spec Footer -->
+  <g transform="translate(50, 680)">
+    <line x1="0" y1="0" x2="500" y2="0" stroke="#141414" stroke-width="0.75" stroke-opacity="0.2"/>
+    <text x="0" y="24" font-family="monospace" font-size="10" fill="#141414">PRIMARY SPEC: SMOKED SOLID OAK / AGED BRASS</text>
+    <text x="0" y="40" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="12" fill="#8A8680">Architectural acoustic damping tambour cabinet storage.</text>
+    <text x="500" y="24" text-anchor="end" font-family="monospace" font-size="9" fill="#E10A1D">OFFLINE RESILIENCE ASSET</text>
+    <text x="500" y="40" text-anchor="end" font-family="monospace" font-size="9" fill="#8A8680">VERIFIED ARCHITECTURE</text>
+  </g>
+</svg>

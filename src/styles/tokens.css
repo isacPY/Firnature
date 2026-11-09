@@ -1,0 +1,29 @@
+:root {
+  /* Strict 5-Color Editorial Palette (WCAG 2.1 AA Compliant) */
+  --cream: #EEEADC;
+  --red: #C80818;
+  --ink: #141414;
+  --grey: #68645E;
+  --white: #FFFFFF;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing & Layout */
+  --max-width: 1440px;
+  --side-pad-desktop: 32px;
+  --side-pad-mobile: 20px;
+  --section-pad-desktop: 120px;
+  --section-pad-mobile: 72px;
+
+  /* Transitions */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* RTL Typography & Urdu/Arabic Font Fallbacks */
+[dir="rtl"] {
+  --font-serif: 'Noto Nastaliq Urdu', 'Amiri', 'Traditional Arabic', 'Newsreader', Georgia, serif;
+  --font-display: 'Amiri', 'Noto Sans Arabic', 'Bebas Neue', sans-serif;
+}

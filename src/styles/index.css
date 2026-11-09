@@ -1,0 +1,234 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./luxuryAdditions.css";
+
+@theme {
+  --color-cream: var(--cream);
+  --color-red: var(--red);
+  --color-ink: var(--ink);
+  --color-grey: var(--grey);
+  --color-white: var(--white);
+
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
+}
+
+/* Base Editorial Typography & Styles */
+html {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display Font Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Hairlines */
+.hairline-red {
+  border: 1px solid var(--red);
+}
+
+.hairline-b-red {
+  border-bottom: 1px solid var(--red);
+}
+
+.hairline-t-red {
+  border-top: 1px solid var(--red);
+}
+
+.hairline-grey {
+  border: 1px solid var(--grey);
+}
+
+.hairline-b-grey {
+  border-bottom: 1px solid color-mix(in srgb, var(--grey) 35%, transparent);
+}
+
+/* Pill Button Style */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  color: var(--ink);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.pill-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.pill-btn.active {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: var(--cream);
+}
+
+/* Card Skeleton Loading Line */
+.card-loading-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  animation: loading-scan 1.5s infinite;
+}
+
+@keyframes loading-scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Bracket CTA link animation */
+.bracket-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  color: var(--red);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.bracket-link .bracket-left {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+.bracket-link .bracket-right {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+.bracket-link:hover .bracket-left {
+  transform: translateX(-4px);
+}
+
+.bracket-link:hover .bracket-right {
+  transform: translateX(4px);
+}
+
+/* Nav Link Underline Wipe */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Lenis Custom Rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped,
+body.scroll-locked {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--red) 35%, transparent);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red);
+}
+
+/* Hotspot Pulse */
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* GPU Acceleration & Layer Promotion */
+.gpu-layer {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Ensure parallax and scrubbed containers have hardware composition without transform collisions */
+.hero-reveal-photo,
+.statement-inline-image,
+.product-photo,
+.hotspot-marker,
+.footer-wordmark-letter {
+  backface-visibility: hidden;
+  will-change: transform;
+}

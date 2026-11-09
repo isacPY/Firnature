@@ -1,0 +1,51 @@
+/* Editorial Tactile Paper Grain & Spec Sheet Print Styles */
+
+/* Subtle Museum Paper Grain Overlay */
+.editorial-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Subtle Cursor Spotlight */
+.cursor-spotlight {
+  position: fixed;
+  pointer-events: none;
+  z-index: 40;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 10, 29, 0.035) 0%, rgba(238, 234, 220, 0) 70%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+/* Print Styles for Architectural Trade Spec Sheets */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-tear-sheet,
+  #printable-tear-sheet * {
+    visibility: visible;
+  }
+  #printable-tear-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20mm;
+    background: #ffffff !important;
+    color: #141414 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

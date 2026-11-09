@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>ATELIER° | Haute Architecture & Editorial Living</title>
+    <meta name="title" content="ATELIER° | Haute Architecture & Editorial Living" />
+    <meta name="description" content="An editorial showcase of timeless, monolithic furniture pieces. Handcrafted architectural objects, bespoke upholstery, and sculptural living." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://atelier-living.com/" />
+    <meta property="og:title" content="ATELIER° | Haute Architecture & Editorial Living" />
+    <meta property="og:description" content="An editorial showcase of timeless, monolithic furniture pieces. Handcrafted architectural objects, bespoke upholstery, and sculptural living." />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://atelier-living.com/" />
+    <meta property="twitter:title" content="ATELIER° | Haute Architecture & Editorial Living" />
+    <meta property="twitter:description" content="An editorial showcase of timeless, monolithic furniture pieces. Handcrafted architectural objects, bespoke upholstery, and sculptural living." />
+    <meta property="twitter:image" content="/og-image.jpg" />
+
+    <!-- Preload Critical Instant Preloader Asset (local SVG, 0ms network latency) -->
+    <link rel="preload" href="/images/placeholders/armchair.svg" as="image" type="image/svg+xml" />
+
+    <!-- Critical fonts: Only Bebas Neue (display, tiny) + Newsreader regular/italic (body serif) -->
+    <!-- Loaded with display=swap so text renders immediately in fallback font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Primary display font: Bebas Neue (very small, loads fast) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" />
+    <!-- Serif body font: Newsreader narrow optical size range only (saves ~70% weight) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,12..24,300..600;1,12..24,300..500&display=swap" media="print" onload="this.media='all'" />
+    <!-- RTL fonts are loaded on-demand via JS when RTL mode is activated (zero load on first visit) -->
+
+    <!-- Inline critical CSS: prevent FOUC (flash of unstyled content) before Tailwind loads -->
+    <style>
+      :root {
+        --cream: #EEEADC;
+        --red: #E10A1D;
+        --ink: #141414;
+      }
+      html, body {
+        margin: 0; padding: 0;
+        background-color: var(--cream);
+        color: var(--ink);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      body.scroll-locked {
+        overflow: hidden;
+      }
+      #root {
+        min-height: 100vh;
+        background-color: var(--cream);
+      }
+    </style>
+
+    <!-- LocalBusiness / FurnitureStore JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FurnitureStore",
+      "name": "ATELIER°",
+      "image": "https://atelier-living.com/og-image.jpg",
+      "description": "Editorial, architectural furniture atelier and curated showroom.",
+      "telephone": "+1 (212) 555-0199",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "442 West Broadway",
+        "addressLocality": "SoHo, New York",
+        "addressRegion": "NY",
+        "postalCode": "10012",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 40.7259,
+        "longitude": -74.0003
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "10:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "12:00",
+          "closes": "17:00"
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-cream text-ink antialiased selection:bg-red selection:text-cream">
+    <noscript>
+      <div style="padding: 2.5rem 1.5rem; font-family: serif; text-align: center; color: #141414; background-color: #EEEADC;">
+        <h1 style="font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: 0.1em;">ATELIER°</h1>
+        <p style="font-style: italic; color: #8A8680;">Please enable JavaScript to experience the architectural collection and lookbook.</p>
+      </div>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

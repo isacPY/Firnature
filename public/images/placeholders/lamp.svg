@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="600" height="800" fill="#EAE6DF"/>
+  
+  <!-- Subtle Blueprint Grid -->
+  <defs>
+    <pattern id="archGridLamp" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#8A8680" stroke-width="0.5" stroke-opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="800" fill="url(#archGridLamp)"/>
+
+  <!-- Border Hairline -->
+  <rect x="28" y="28" width="544" height="744" fill="none" stroke="#8A8680" stroke-width="1" stroke-opacity="0.35"/>
+  <rect x="36" y="36" width="528" height="728" fill="none" stroke="#8A8680" stroke-width="0.5" stroke-opacity="0.2"/>
+
+  <!-- Technical Corner Marks -->
+  <path d="M 20 28 L 36 28 M 28 20 L 28 36" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 580 28 L 564 28 M 572 20 L 572 36" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 20 772 L 36 772 M 28 780 L 28 764" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 580 772 L 564 772 M 572 780 L 572 764" stroke="#E10A1D" stroke-width="1.5"/>
+
+  <!-- Header Typography -->
+  <text x="50" y="70" font-family="'Newsreader', Georgia, serif" font-size="11" letter-spacing="3" fill="#8A8680">ATELIER° ARCHITECTURAL STUDY</text>
+  <text x="50" y="92" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="20" fill="#141414">Obelisk Sculptural Floor Lamp</text>
+  <text x="550" y="70" text-anchor="end" font-family="monospace" font-size="10" fill="#E10A1D">PLATE NO. 05</text>
+  <text x="550" y="86" text-anchor="end" font-family="monospace" font-size="9" fill="#8A8680">SCALE 1:8</text>
+
+  <!-- Divider Line -->
+  <line x1="50" y1="110" x2="550" y2="110" stroke="#141414" stroke-width="0.75" stroke-opacity="0.2"/>
+
+  <!-- Lamp Vector Artwork -->
+  <g transform="translate(100, 160)">
+    <!-- Floor Shadow -->
+    <ellipse cx="200" cy="460" rx="140" ry="14" fill="#141414" fill-opacity="0.06"/>
+    <line x1="30" y1="460" x2="370" y2="460" stroke="#8A8680" stroke-width="1" stroke-dasharray="4 4"/>
+
+    <!-- Stepped Heavy Base (Solid Brass & Marble) -->
+    <rect x="140" y="445" width="120" height="15" rx="2" fill="#8C733E" stroke="#141414" stroke-width="2"/>
+    <rect x="155" y="435" width="90" height="10" rx="1" fill="#A88B4D" stroke="#141414" stroke-width="2"/>
+    <rect x="175" y="425" width="50" height="10" fill="#8C733E" stroke="#141414" stroke-width="1.5"/>
+
+    <!-- Tapered Lower Obelisk Column (Alabaster) -->
+    <polygon points="175,425 225,425 218,240 182,240" fill="#EDE7DC" stroke="#141414" stroke-width="2.5"/>
+    <line x1="200" y1="240" x2="200" y2="425" stroke="#C4BCAD" stroke-width="1" stroke-dasharray="3 3"/>
+
+    <!-- Brass Intermediary Collar with Dimmer Knob -->
+    <rect x="178" y="230" width="44" height="10" rx="1" fill="#C5A059" stroke="#141414" stroke-width="2"/>
+    <circle cx="218" cy="235" r="3" fill="#E10A1D"/>
+
+    <!-- Upper Translucent Alabaster Luminaire -->
+    <polygon points="182,230 218,230 230,80 170,80" fill="#FDFBF7" stroke="#141414" stroke-width="2.5"/>
+    <!-- Subtle glow lines -->
+    <line x1="170" y1="80" x2="230" y2="80" stroke="#E10A1D" stroke-width="2"/>
+    <line x1="190" y1="95" x2="210" y2="95" stroke="#E3DAC9" stroke-width="1.5"/>
+    <line x1="187" y1="125" x2="213" y2="125" stroke="#E3DAC9" stroke-width="1.5"/>
+    <line x1="185" y1="165" x2="215" y2="165" stroke="#E3DAC9" stroke-width="1.5"/>
+    <line x1="183" y1="200" x2="217" y2="200" stroke="#E3DAC9" stroke-width="1.5"/>
+
+    <!-- Architectural Finial Crown -->
+    <polygon points="175,80 225,80 200,60" fill="#8C733E" stroke="#141414" stroke-width="2"/>
+
+    <!-- Dimension Witness Lines -->
+    <g stroke="#8A8680" stroke-width="0.75">
+      <line x1="140" y1="480" x2="260" y2="480"/>
+      <line x1="140" y1="475" x2="140" y2="485"/>
+      <line x1="260" y1="475" x2="260" y2="485"/>
+      <text x="200" y="495" text-anchor="middle" font-family="monospace" font-size="9" fill="#141414">320 mm</text>
+
+      <line x1="285" y1="60" x2="285" y2="460"/>
+      <line x1="280" y1="60" x2="290" y2="60"/>
+      <line x1="280" y1="460" x2="290" y2="460"/>
+      <text x="305" y="260" font-family="monospace" font-size="9" fill="#141414" transform="rotate(90 305 260)">1650 mm</text>
+    </g>
+  </g>
+
+  <!-- Technical Spec Footer -->
+  <g transform="translate(50, 680)">
+    <line x1="0" y1="0" x2="500" y2="0" stroke="#141414" stroke-width="0.75" stroke-opacity="0.2"/>
+    <text x="0" y="24" font-family="monospace" font-size="10" fill="#141414">PRIMARY SPEC: SPANISH ALABASTER / SOLID BRASS</text>
+    <text x="0" y="40" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="12" fill="#8A8680">Ambient luminaire with continuous solid brass rotation dimmer.</text>
+    <text x="500" y="24" text-anchor="end" font-family="monospace" font-size="9" fill="#E10A1D">OFFLINE RESILIENCE ASSET</text>
+    <text x="500" y="40" text-anchor="end" font-family="monospace" font-size="9" fill="#8A8680">VERIFIED ARCHITECTURE</text>
+  </g>
+</svg>

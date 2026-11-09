@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="600" height="800" fill="#EAE6DF"/>
+  
+  <!-- Subtle Blueprint Grid -->
+  <defs>
+    <pattern id="archGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#8A8680" stroke-width="0.5" stroke-opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="800" fill="url(#archGrid)"/>
+
+  <!-- Border Hairline -->
+  <rect x="28" y="28" width="544" height="744" fill="none" stroke="#8A8680" stroke-width="1" stroke-opacity="0.35"/>
+  <rect x="36" y="36" width="528" height="728" fill="none" stroke="#8A8680" stroke-width="0.5" stroke-opacity="0.2"/>
+
+  <!-- Technical Corner Marks -->
+  <path d="M 20 28 L 36 28 M 28 20 L 28 36" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 580 28 L 564 28 M 572 20 L 572 36" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 20 772 L 36 772 M 28 780 L 28 764" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 580 772 L 564 772 M 572 780 L 572 764" stroke="#E10A1D" stroke-width="1.5"/>
+
+  <!-- Header Typography -->
+  <text x="50" y="70" font-family="'Newsreader', Georgia, serif" font-size="11" letter-spacing="3" fill="#8A8680">ATELIER° ARCHITECTURAL STUDY</text>
+  <text x="50" y="92" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="20" fill="#141414">L'Arc Sculptural Armchair</text>
+  <text x="550" y="70" text-anchor="end" font-family="monospace" font-size="10" fill="#E10A1D">PLATE NO. 01</text>
+  <text x="550" y="86" text-anchor="end" font-family="monospace" font-size="9" fill="#8A8680">SCALE 1:10</text>
+
+  <!-- Divider Line -->
+  <line x1="50" y1="110" x2="550" y2="110" stroke="#141414" stroke-width="0.75" stroke-opacity="0.2"/>
+
+  <!-- Armchair Vector Artwork (Architectural Front & Angle Elevation) -->
+  <g transform="translate(60, 200)">
+    <!-- Ground Shadow / Plinth Plane -->
+    <ellipse cx="240" cy="340" rx="190" ry="18" fill="#141414" fill-opacity="0.06"/>
+    <line x1="40" y1="340" x2="440" y2="340" stroke="#8A8680" stroke-width="1" stroke-dasharray="4 4"/>
+
+    <!-- Chair Backrest Curvature -->
+    <path d="M 120 220 C 110 130 160 70 240 70 C 320 70 370 130 360 220 Z" fill="#DDD7CB" stroke="#141414" stroke-width="2.5"/>
+    <!-- Deep Contoured Seat Cushion -->
+    <path d="M 90 230 C 90 190 140 180 240 180 C 340 180 390 190 390 230 C 390 280 340 290 240 290 C 140 290 90 280 90 230 Z" fill="#E10A1D" fill-opacity="0.88" stroke="#141414" stroke-width="2.5"/>
+    <path d="M 110 240 C 150 255 240 258 370 240" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.6"/>
+
+    <!-- Sculptural Armrest Wings -->
+    <path d="M 90 230 C 70 170 110 120 150 120 C 165 120 175 140 160 180 Z" fill="#D2CCC0" stroke="#141414" stroke-width="2"/>
+    <path d="M 390 230 C 410 170 370 120 330 120 C 315 120 305 140 320 180 Z" fill="#D2CCC0" stroke="#141414" stroke-width="2"/>
+
+    <!-- Tubular Steel Legs -->
+    <line x1="140" y1="280" x2="110" y2="340" stroke="#141414" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="340" y1="280" x2="370" y2="340" stroke="#141414" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="200" y1="285" x2="190" y2="340" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
+    <line x1="280" y1="285" x2="290" y2="340" stroke="#141414" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Dimension Witness Lines -->
+    <g stroke="#8A8680" stroke-width="0.75">
+      <!-- Width Dimension -->
+      <line x1="70" y1="365" x2="410" y2="365"/>
+      <line x1="70" y1="360" x2="70" y2="370"/>
+      <line x1="410" y1="360" x2="410" y2="370"/>
+      <text x="240" y="380" text-anchor="middle" font-family="monospace" font-size="9" fill="#141414">920 mm</text>
+
+      <!-- Height Dimension -->
+      <line x1="445" y1="70" x2="445" y2="340"/>
+      <line x1="440" y1="70" x2="450" y2="70"/>
+      <line x1="440" y1="340" x2="450" y2="340"/>
+      <text x="460" y="210" font-family="monospace" font-size="9" fill="#141414" transform="rotate(90 460 210)">740 mm</text>
+    </g>
+  </g>
+
+  <!-- Technical Spec Footer -->
+  <g transform="translate(50, 680)">
+    <line x1="0" y1="0" x2="500" y2="0" stroke="#141414" stroke-width="0.75" stroke-opacity="0.2"/>
+    <text x="0" y="24" font-family="monospace" font-size="10" fill="#141414">PRIMARY SPEC: WOOL BOUCLÉ / MATTE STEEL</text>
+    <text x="0" y="40" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="12" fill="#8A8680">Architectural envelope study for private salon seating.</text>
+    <text x="500" y="24" text-anchor="end" font-family="monospace" font-size="9" fill="#E10A1D">OFFLINE RESILIENCE ASSET</text>
+    <text x="500" y="40" text-anchor="end" font-family="monospace" font-size="9" fill="#8A8680">VERIFIED ARCHITECTURE</text>
+  </g>
+</svg>

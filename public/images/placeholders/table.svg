@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="600" height="800" fill="#EAE6DF"/>
+  
+  <!-- Subtle Blueprint Grid -->
+  <defs>
+    <pattern id="archGridTable" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#8A8680" stroke-width="0.5" stroke-opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="800" fill="url(#archGridTable)"/>
+
+  <!-- Border Hairline -->
+  <rect x="28" y="28" width="544" height="744" fill="none" stroke="#8A8680" stroke-width="1" stroke-opacity="0.35"/>
+  <rect x="36" y="36" width="528" height="728" fill="none" stroke="#8A8680" stroke-width="0.5" stroke-opacity="0.2"/>
+
+  <!-- Technical Corner Marks -->
+  <path d="M 20 28 L 36 28 M 28 20 L 28 36" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 580 28 L 564 28 M 572 20 L 572 36" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 20 772 L 36 772 M 28 780 L 28 764" stroke="#E10A1D" stroke-width="1.5"/>
+  <path d="M 580 772 L 564 772 M 572 780 L 572 764" stroke="#E10A1D" stroke-width="1.5"/>
+
+  <!-- Header Typography -->
+  <text x="50" y="70" font-family="'Newsreader', Georgia, serif" font-size="11" letter-spacing="3" fill="#8A8680">ATELIER° ARCHITECTURAL STUDY</text>
+  <text x="50" y="92" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="20" fill="#141414">Monolith Travertine Table</text>
+  <text x="550" y="70" text-anchor="end" font-family="monospace" font-size="10" fill="#E10A1D">PLATE NO. 03</text>
+  <text x="550" y="86" text-anchor="end" font-family="monospace" font-size="9" fill="#8A8680">SCALE 1:15</text>
+
+  <!-- Divider Line -->
+  <line x1="50" y1="110" x2="550" y2="110" stroke="#141414" stroke-width="0.75" stroke-opacity="0.2"/>
+
+  <!-- Monolithic Table Vector Artwork -->
+  <g transform="translate(50, 240)">
+    <!-- Floor Shadow -->
+    <ellipse cx="250" cy="270" rx="220" ry="16" fill="#141414" fill-opacity="0.06"/>
+    <line x1="20" y1="270" x2="480" y2="270" stroke="#8A8680" stroke-width="1" stroke-dasharray="4 4"/>
+
+    <!-- Dual Monolithic Stone Plinth Legs -->
+    <!-- Left Leg -->
+    <rect x="110" y="115" width="70" height="155" rx="3" fill="#DDD5C7" stroke="#141414" stroke-width="2.5"/>
+    <line x1="125" y1="115" x2="125" y2="270" stroke="#8A8680" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="165" y1="115" x2="165" y2="270" stroke="#8A8680" stroke-width="1" stroke-opacity="0.4"/>
+
+    <!-- Right Leg -->
+    <rect x="320" y="115" width="70" height="155" rx="3" fill="#DDD5C7" stroke="#141414" stroke-width="2.5"/>
+    <line x1="335" y1="115" x2="335" y2="270" stroke="#8A8680" stroke-width="1" stroke-opacity="0.4"/>
+    <line x1="375" y1="115" x2="375" y2="270" stroke="#8A8680" stroke-width="1" stroke-opacity="0.4"/>
+
+    <!-- Thick Honed Roman Travertine Top -->
+    <!-- Under-bevel -->
+    <polygon points="45,95 455,95 435,115 65,115" fill="#C9C1B2" stroke="#141414" stroke-width="2"/>
+    <!-- Top slab surface -->
+    <polygon points="40,80 460,80 455,95 45,95" fill="#E6DFD2" stroke="#141414" stroke-width="2.5"/>
+    <polygon points="50,70 450,70 460,80 40,80" fill="#F1ECE2" stroke="#141414" stroke-width="2"/>
+
+    <!-- Natural Travertine Stone Vein Markings -->
+    <path d="M 80 82 Q 130 88 180 80 T 260 84" fill="none" stroke="#B8AFA0" stroke-width="1"/>
+    <path d="M 290 84 Q 340 78 390 84" fill="none" stroke="#B8AFA0" stroke-width="1"/>
+    <circle cx="250" cy="80" r="3" fill="#E10A1D"/>
+
+    <!-- Dimension Witness Lines -->
+    <g stroke="#8A8680" stroke-width="0.75">
+      <line x1="40" y1="300" x2="460" y2="300"/>
+      <line x1="40" y1="295" x2="40" y2="305"/>
+      <line x1="460" y1="295" x2="460" y2="305"/>
+      <text x="250" y="315" text-anchor="middle" font-family="monospace" font-size="9" fill="#141414">2600 mm</text>
+
+      <line x1="485" y1="70" x2="485" y2="270"/>
+      <line x1="480" y1="70" x2="490" y2="70"/>
+      <line x1="480" y1="270" x2="490" y2="270"/>
+      <text x="500" y="170" font-family="monospace" font-size="9" fill="#141414" transform="rotate(90 500 170)">750 mm</text>
+    </g>
+  </g>
+
+  <!-- Technical Spec Footer -->
+  <g transform="translate(50, 680)">
+    <line x1="0" y1="0" x2="500" y2="0" stroke="#141414" stroke-width="0.75" stroke-opacity="0.2"/>
+    <text x="0" y="24" font-family="monospace" font-size="10" fill="#141414">PRIMARY SPEC: HONED ROMAN TRAVERTINE / RAW OAK CORE</text>
+    <text x="0" y="40" font-family="'Newsreader', Georgia, serif" font-style="italic" font-size="12" fill="#8A8680">Sculpted from Italian quarry blocks with double-chamfered edge.</text>
+    <text x="500" y="24" text-anchor="end" font-family="monospace" font-size="9" fill="#E10A1D">OFFLINE RESILIENCE ASSET</text>
+    <text x="500" y="40" text-anchor="end" font-family="monospace" font-size="9" fill="#8A8680">VERIFIED ARCHITECTURE</text>
+  </g>
+</svg>
