@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ROOM_SHOWCASE } from '../config/brand';
+import { ROOM_SHOWCASE, PRODUCTS } from '../config/brand';
 import { useStore } from '../state/store';
 import { animateRoomShowcase } from '../animations/room';
 import { scrollTo } from '../animations';
@@ -38,6 +38,8 @@ export function RoomShowcase() {
   };
 
   const handleNavigateToProduct = (hs) => {
+    const prod = PRODUCTS.find((p) => p.id === hs.productId);
+    if (prod) setActiveCategory(prod.category);
     scrollTo('#catalogue');
   };
 
@@ -54,7 +56,7 @@ export function RoomShowcase() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-12">
           <div>
             <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-1">
-              04 — SPATIAL COMPOSITION
+              05 — SPATIAL COMPOSITION
             </span>
             <h2
               ref={headingRef}
@@ -91,11 +93,13 @@ export function RoomShowcase() {
           {/* Interactive Hotspots */}
           {ROOM_SHOWCASE.hotspots.map((hs) => {
             const isOpen = activeHotspot?.id === hs.id;
+            const prod = PRODUCTS.find((p) => p.id === hs.productId);
+            const categoryLabel = prod?.categoryLabel || 'Collection';
 
             return (
               <div
                 key={hs.id}
-                style={{ top: hs.top, left: hs.left }}
+                style={{ top: `${hs.y}%`, left: `${hs.x}%` }}
                 className="hotspot-marker absolute -translate-x-1/2 -translate-y-1/2 z-20 group"
               >
                 {/* Hotspot Outer Pulsing Ring */}
@@ -117,7 +121,7 @@ export function RoomShowcase() {
                 {isOpen && (
                   <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-56 sm:w-64 bg-white/95 backdrop-blur-md p-4 shadow-xl border border-ink/10 rounded-sm text-left animate-in fade-in slide-in-from-bottom-2 duration-200 z-30">
                     <span className="font-display text-[10px] text-red tracking-widest uppercase block">
-                      {hs.category}
+                      {categoryLabel}
                     </span>
                     <h4 className="font-serif text-base text-ink mt-0.5 tracking-tight font-medium">
                       {hs.name}

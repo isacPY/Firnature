@@ -27,6 +27,11 @@ export function Footer() {
     ? (customBrandName.endsWith('°') ? customBrandName : `${customBrandName}°`)
     : BRAND_CONFIG.wordmark;
 
+  // Pitch tools are for live demos only — hide them on the public site
+  // unless opened with ?pitch=1 (e.g. http://localhost:5173/?pitch=1)
+  const isPitchMode =
+    typeof window !== 'undefined' && window.location.search.includes('pitch=1');
+
   return (
     <footer
       id="about"
@@ -113,7 +118,7 @@ export function Footer() {
 
             <div className="pt-2 space-y-1.5">
               <a
-                href={`tel:${BRAND_CONFIG.showroom.phone}`}
+                href={`tel:+${BRAND_CONFIG.showroom.phone.replace(/[^0-9]/g, '')}`}
                 className="hover:text-red transition-colors flex items-center gap-2"
               >
                 <Phone className="w-3.5 h-3.5 text-red" />
@@ -147,16 +152,18 @@ export function Footer() {
           <p>© {new Date().getFullYear()} {displayWordmark} All architectural rights reserved.</p>
           
           <div className="flex items-center gap-6">
-            <button
-              type="button"
-              onClick={toggleDeviceEndCard}
-              className="hover:text-white cursor-pointer transition-colors"
-              aria-label="Confidential Pitch Monograph — Open demonstration"
-            >
-              Confidential Pitch Monograph
-            </button>
-            <span className="hover:text-white cursor-pointer">Terms of Commission</span>
-            <span className="hover:text-white cursor-pointer">Provenance Registry</span>
+            {isPitchMode && (
+              <button
+                type="button"
+                onClick={toggleDeviceEndCard}
+                className="hover:text-white cursor-pointer transition-colors"
+                aria-label="Confidential Pitch Monograph — Open demonstration"
+              >
+                Confidential Pitch Monograph
+              </button>
+            )}
+            <span className="text-cream/50">Terms of Commission</span>
+            <span className="text-cream/50">Provenance Registry</span>
           </div>
         </div>
 

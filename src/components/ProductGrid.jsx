@@ -59,7 +59,7 @@ export function ProductGrid() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-grey/20">
           <div>
             <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-2">
-              03 — MONOLITHIC CATALOGUE
+              04 — MONOLITHIC CATALOGUE
             </span>
             <h2
               ref={headingRef}

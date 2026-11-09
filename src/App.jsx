@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { initLenis, destroyAnimations } from './animations';
 import { Cursor } from './components/Cursor';
 import { Preloader } from './components/Preloader';
@@ -16,11 +16,24 @@ import { BagDrawer } from './components/BagDrawer';
 import { SavedDrawer } from './components/SavedDrawer';
 import { SearchOverlay } from './components/SearchOverlay';
 import { WhatsAppButton } from './components/WhatsAppButton';
-import { PitchControls } from './components/PitchControls';
-import { DeviceEndCard } from './components/DeviceEndCard';
-import { TradeTearSheetModal } from './components/TradeTearSheetModal';
-import { PrivateViewingModal } from './components/PrivateViewingModal';
-import { PresentationBar } from './components/PresentationBar';
+// Click-only / pitch-only pieces load on demand, not in the first paint.
+// This keeps the initial bundle smaller (Performance / TBT) — they are
+// only needed when a user opens a modal or ?pitch=1 is present.
+const PitchControls = lazy(() =>
+  import('./components/PitchControls').then((m) => ({ default: m.PitchControls }))
+);
+const DeviceEndCard = lazy(() =>
+  import('./components/DeviceEndCard').then((m) => ({ default: m.DeviceEndCard }))
+);
+const TradeTearSheetModal = lazy(() =>
+  import('./components/TradeTearSheetModal').then((m) => ({ default: m.TradeTearSheetModal }))
+);
+const PrivateViewingModal = lazy(() =>
+  import('./components/PrivateViewingModal').then((m) => ({ default: m.PrivateViewingModal }))
+);
+const PresentationBar = lazy(() =>
+  import('./components/PresentationBar').then((m) => ({ default: m.PresentationBar }))
+);
 
 export default function App() {
   useEffect(() => {
@@ -66,13 +79,15 @@ export default function App() {
       <SavedDrawer />
       <SearchOverlay />
       <WhatsAppButton />
-      <PitchControls />
-      <DeviceEndCard />
+      <Suspense fallback={null}>
+        <PitchControls />
+        <DeviceEndCard />
 
-      {/* Enterprise High-Ticket Modals */}
-      <TradeTearSheetModal />
-      <PrivateViewingModal />
-      <PresentationBar />
+        {/* Enterprise High-Ticket Modals */}
+        <TradeTearSheetModal />
+        <PrivateViewingModal />
+        <PresentationBar />
+      </Suspense>
     </div>
   );
 }

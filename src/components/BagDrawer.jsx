@@ -8,7 +8,7 @@ export function BagDrawer() {
   const {
     isBagOpen,
     setIsBagOpen,
-    bag,
+    bagItems: bag,
     removeFromBag,
     updateBagQuantity,
     clearBag,
@@ -83,7 +83,8 @@ export function BagDrawer() {
               </div>
             ) : (
               bag.map((item) => {
-                const p = item.product;
+                const p = item.product || item;
+                if (!p) return null;
                 return (
                   <div
                     key={p.id}

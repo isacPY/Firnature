@@ -139,6 +139,12 @@ export function PitchControls() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
+  // Pitch tools are for live demos only — hide them on the public site
+  // unless opened with ?pitch=1 (e.g. http://localhost:5173/?pitch=1)
+  const isPitchMode =
+    typeof window !== 'undefined' && window.location.search.includes('pitch=1');
+  if (!isPitchMode) return null;
+
   return (
     <>
       {/* Floating Pitch Badge Button */}

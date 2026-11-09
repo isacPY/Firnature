@@ -17,7 +17,7 @@ export function VisitSection() {
         {/* Header */}
         <div className="mb-12 sm:mb-16">
           <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-1">
-            05 — PRIVATE VISITATION & SHOWROOM
+            06 — PRIVATE VISITATION & SHOWROOM
           </span>
           <h2 className="font-serif text-[clamp(2.4rem,4.5vw,4.5rem)] text-ink leading-[0.95] tracking-tight">
             Experience the Collection in Person.
@@ -86,7 +86,7 @@ export function VisitSection() {
                     DIRECT INQUIRIES
                   </h3>
                   <p className="font-serif text-lg text-ink mt-1">
-                    <a href={`tel:${showroom.phone}`} className="hover:text-red transition-colors">
+                    <a href={`tel:+${showroom.phone.replace(/[^0-9]/g, '')}`} className="hover:text-red transition-colors">
                       {showroom.displayPhone}
                     </a>
                   </p>
@@ -112,7 +112,7 @@ export function VisitSection() {
               </a>
 
               <a
-                href={`tel:${showroom.phone}`}
+                href={`tel:+${showroom.phone.replace(/[^0-9]/g, '')}`}
                 className="px-8 py-3.5 rounded-full border border-ink text-ink font-sans text-xs tracking-widest uppercase flex items-center justify-center gap-2 hover:border-red hover:text-red transition-colors duration-300"
               >
                 <Phone className="w-4 h-4" />

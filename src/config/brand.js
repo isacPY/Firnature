@@ -23,7 +23,7 @@ export const BRAND_CONFIG = {
     { label: "Archetypes", href: "#ethos-showcase" },
     { label: "Rooms", href: "#rooms" },
     { label: "Private Viewing", href: "#appointment" },
-    { label: "Materials", href: "#about" },
+    { label: "Materials", href: "#ethos-showcase" },
   ],
 
   showroom: {
