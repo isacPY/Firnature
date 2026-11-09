@@ -4,7 +4,7 @@ import { BRAND_CONFIG, PRODUCTS } from '../config/brand';
 import { animateHero } from '../animations/hero';
 import { scrollTo } from '../animations';
 import { useStore } from '../state/store';
-import { handleImageFallback } from '../utils/placeholders';
+import { handleImageFallback, getLocalSrcset } from '../utils/placeholders';
 
 export function Hero() {
   const { preloaderDone } = useStore();
@@ -40,6 +40,7 @@ export function Hero() {
   const diningChair = PRODUCTS.find((p) => p.id === "prod-9") || PRODUCTS[1];
   const heroTable = PRODUCTS.find((p) => p.id === "prod-2") || PRODUCTS[2];
   const credenza = PRODUCTS.find((p) => p.id === "prod-4") || PRODUCTS[3];
+  const heroSrcset = getLocalSrcset(heroTable.image);
 
   return (
     <section
@@ -158,6 +159,7 @@ export function Hero() {
             <div className="hero-reveal-photo relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-ink/5 border border-grey/30">
               <img
                 src={heroTable.image}
+                {...(heroSrcset ? { srcSet: heroSrcset.srcSet, sizes: heroSrcset.sizes } : {})}
                 onError={(e) => handleImageFallback(e, 'tables')}
                 alt={heroTable.name}
                 decoding="async"

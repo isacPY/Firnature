@@ -27,17 +27,11 @@
     <!-- Preload Critical Instant Preloader Asset (local SVG, 0ms network latency) -->
     <link rel="preload" href="/images/placeholders/armchair.svg" as="image" type="image/svg+xml" />
 
-    <!-- Critical fonts: Only Bebas Neue (display, tiny) + Newsreader regular/italic (body serif) -->
-    <!-- Loaded with display=swap so text renders immediately in fallback font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <!-- Primary display font: Bebas Neue (very small, loads fast) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" />
-    <!-- Serif body font: Newsreader narrow optical size range only (saves ~70% weight) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,12..24,300..600;1,12..24,300..500&display=swap" media="print" onload="this.media='all'" />
-    <!-- RTL fonts are loaded on-demand via JS when RTL mode is activated (zero load on first visit) -->
+    <!-- Fonts are self-hosted in /fonts/ (see @font-face in src/styles/index.css).
+         No Google Fonts request on first paint.
+         RTL fonts are loaded on-demand via JS when RTL mode is activated (zero load on first visit) -->
+    <!-- Preload the display font so the giant hero headline renders in Bebas Neue fast -->
+    <link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Inline critical CSS: prevent FOUC (flash of unstyled content) before Tailwind loads -->
     <style>

@@ -22,7 +22,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 92 × D 88 × H 74 cm',
     cardDescription: 'An iconic monolithic silhouette enveloping the sitter in heavy wool bouclé, grounded by concealed steel framing.',
     badgeLabel: 'Chairs',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/photo-1586023492125-27b2c045efd7-1200.webp',
     pieceCount: '03 Pieces'
   },
   {
@@ -36,7 +36,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 340 × D 160 × H 68 cm',
     cardDescription: 'Low-slung modular seating system configured with deep rectilinear cushions and solid walnut plinth base.',
     badgeLabel: 'Sofas',
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/photo-1555041469-a586c61ea9bc-1200.webp',
     pieceCount: '02 Pieces'
   },
   {
@@ -50,7 +50,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 260 × D 110 × H 75 cm',
     cardDescription: 'Sculpted from a single block of un-filled Italian travertine with a double-chamfered architectural edge.',
     badgeLabel: 'Tables',
-    image: 'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/photo-1530018607912-eff2daa1bac4-1200.webp',
     pieceCount: '02 Pieces'
   },
   {
@@ -64,7 +64,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 220 × D 50 × H 78 cm',
     cardDescription: 'Hand-hewn fluted smoked oak fascia with patinated bronze pulls and soft-closing architectural reveals.',
     badgeLabel: 'Storage',
-    image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/photo-1595428774223-ef52624120d2-1200.webp',
     pieceCount: '02 Pieces'
   },
   {
@@ -78,7 +78,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 38 × D 38 × H 185 cm',
     cardDescription: 'Monolithic cast bronze column holding an internally illuminated sphere of honed Spanish alabaster.',
     badgeLabel: 'Lighting',
-    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/photo-1507473885765-e6ed057f782c-1200.webp',
     pieceCount: '01 Piece'
   },
   {
@@ -92,7 +92,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 205 × D 95 × H 42 cm',
     cardDescription: 'Minimalist Japanese-joinery daybed framed in blackened ash with custom saddle leather bolster tie-downs.',
     badgeLabel: 'Beds',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/photo-1505693416388-ac5ce068fe85-1200.webp',
     pieceCount: '01 Piece'
   },
   {
@@ -106,7 +106,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 85 × D 8 × H 210 cm',
     cardDescription: 'Floor-standing architectural mirror framed in heavy textured cast aluminum with hand-silvered glass.',
     badgeLabel: 'Mirrors',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/photo-1618221195710-dd6b41faaea6-1200.webp',
     pieceCount: '01 Piece'
   }
 ];

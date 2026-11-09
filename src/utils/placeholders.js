@@ -28,14 +28,35 @@ export function getFallbackPlaceholder(category) {
 }
 
 /**
+ * Build a srcset/sizes pair for a locally hosted WebP image.
+ * Local product photos are saved as <photo>-600.webp and <photo>-1200.webp;
+ * returns null for anything else (e.g. a remote URL), so the <img> just
+ * uses its plain src with no srcset.
+ * @param {string} src
+ * @returns {{ srcSet: string, sizes: string } | null}
+ */
+export function getLocalSrcset(src) {
+  if (typeof src !== 'string' || !src.endsWith('-1200.webp')) return null;
+  return {
+    srcSet: `${src.replace('-1200.webp', '-600.webp')} 600w, ${src} 1200w`,
+    sizes: '(max-width: 768px) 600px, 1200px',
+  };
+}
+
+/**
  * Graceful image onError handler to swap broken/offline CDN images with technical SVG blueprints.
  * Prevents recursive looping by checking if current target is already the fallback.
- * @param {React.SyntheticEvent<HTMLImageElement>} e 
- * @param {string} category 
+ * @param {React.SyntheticEvent<HTMLImageElement>} e
+ * @param {string} category
  */
 export function handleImageFallback(e, category = 'default') {
   const fallback = getFallbackPlaceholder(category);
-  if (e?.currentTarget && e.currentTarget.getAttribute('src') !== fallback) {
-    e.currentTarget.src = fallback;
+  if (e?.currentTarget) {
+    // Drop srcset so the browser does not re-pick a (broken) srcset candidate
+    // over the fallback image.
+    e.currentTarget.removeAttribute('srcset');
+    if (e.currentTarget.getAttribute('src') !== fallback) {
+      e.currentTarget.src = fallback;
+    }
   }
 }

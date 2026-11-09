@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Bookmark, ShoppingBag, Eye, FileText, Calendar, User, Check } from 'lucide-react';
-import { handleImageFallback } from '../utils/placeholders';
+import { handleImageFallback, getLocalSrcset } from '../utils/placeholders';
 import { useStore } from '../state/store';
 
 export const ProductCard = React.memo(function ProductCard({
@@ -21,6 +21,7 @@ export const ProductCard = React.memo(function ProductCard({
 
   const currentSwatch = swatches[activeSwatchIndex] || swatches[0];
   const displayImage = currentSwatch.image || product.image;
+  const displaySrcset = getLocalSrcset(displayImage);
 
   const handleSelectSwatch = (e, index) => {
     e.stopPropagation();
@@ -44,6 +45,7 @@ export const ProductCard = React.memo(function ProductCard({
         <div className="product-photo w-full h-full will-change-transform">
           <img
             src={displayImage}
+            {...(displaySrcset ? { srcSet: displaySrcset.srcSet, sizes: displaySrcset.sizes } : {})}
             onError={(e) => handleImageFallback(e, product.category)}
             alt={product.name}
             loading="lazy"

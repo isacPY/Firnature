@@ -19,14 +19,32 @@ export function isReducedMotion() {
 }
 
 /**
+ * Decide whether to skip Lenis smooth scrolling and fall back to native
+ * scrolling. Lenis + GSAP's ticker is the biggest main-thread cost on
+ * small / touch devices, so on phones (and on coarse-pointer tablets)
+ * native scrolling is faster and less laggy. Desktop keeps Lenis.
+ */
+export function shouldUseNativeScroll() {
+  if (typeof window === 'undefined') return false;
+  if (isReducedMotion()) return true;
+  if (window.innerWidth < 768) return true;
+  // Coarse-pointer devices (touch tablets) with a narrow viewport.
+  if (window.innerWidth < 1024 && window.matchMedia('(pointer: coarse)').matches) return true;
+  return false;
+}
+
+/**
  * Initialize Lenis Smooth Scroll and sync with GSAP ScrollTrigger
  */
 export function initLenis() {
   if (typeof window === 'undefined') return null;
   if (lenisInstance) return lenisInstance;
 
-  // Reduced motion: standard scrolling
-  if (isReducedMotion()) {
+  // Reduced motion / mobile / touch: standard scrolling, no Lenis.
+  // ScrollTrigger animations still work with native scroll; scrollTo()
+  // and lockScroll()/unlockScroll() already fall back when there is no
+  // Lenis instance, so nothing else needs to change.
+  if (shouldUseNativeScroll()) {
     return null;
   }
 

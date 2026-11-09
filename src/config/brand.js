@@ -55,13 +55,13 @@ export const BRAND_CONFIG = {
 
 export const CATEGORIES = [
   { id: "all", name: "All Pieces", count: 12 },
-  { id: "chairs", name: "Chairs", count: 3, image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=75" },
-  { id: "sofas", name: "Sofas", count: 2, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=75" },
-  { id: "tables", name: "Tables", count: 2, image: "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&w=600&q=75" },
-  { id: "storage", name: "Storage", count: 2, image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=75" },
-  { id: "lighting", name: "Lighting", count: 1, image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=75" },
-  { id: "beds", name: "Beds", count: 1, image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=75" },
-  { id: "mirrors", name: "Mirrors", count: 1, image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=75" },
+  { id: "chairs", name: "Chairs", count: 3, image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp" },
+  { id: "sofas", name: "Sofas", count: 2, image: "/images/products/photo-1555041469-a586c61ea9bc-1200.webp" },
+  { id: "tables", name: "Tables", count: 2, image: "/images/products/photo-1530018607912-eff2daa1bac4-1200.webp" },
+  { id: "storage", name: "Storage", count: 2, image: "/images/products/photo-1595428774223-ef52624120d2-1200.webp" },
+  { id: "lighting", name: "Lighting", count: 1, image: "/images/products/photo-1507473885765-e6ed057f782c-1200.webp" },
+  { id: "beds", name: "Beds", count: 1, image: "/images/products/photo-1505693416388-ac5ce068fe85-1200.webp" },
+  { id: "mirrors", name: "Mirrors", count: 1, image: "/images/products/photo-1618221195710-dd6b41faaea6-1200.webp" },
 ];
 
 export const PRODUCTS = [
@@ -78,11 +78,11 @@ export const PRODUCTS = [
     leadTime: "6 — 8 Weeks",
     isAccentRed: true,
     isHeroFeatured: true,
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp",
     description: "An iconic monolithic silhouette enveloping the sitter in heavy wool bouclé, grounded by concealed steel framing.",
     swatches: [
-      { id: "carmine", name: "Carmine Bouclé", colorHex: "#C80818", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=75" },
-      { id: "chalk", name: "Chalk Linen", colorHex: "#EAE5DA", image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=75" },
+      { id: "carmine", name: "Carmine Bouclé", colorHex: "#C80818", image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp" },
+      { id: "chalk", name: "Chalk Linen", colorHex: "#EAE5DA", image: "/images/products/photo-1567538096630-e0c55bd6374c-1200.webp" },
       { id: "charcoal", name: "Charcoal Wool", colorHex: "#222120", image: "https://images.unsplash.com/photo-1580481077112-9213197f223a?auto=format&fit=crop&w=800&q=75" }
     ]
   },
@@ -98,12 +98,12 @@ export const PRODUCTS = [
     provenance: "Tivoli Quarry, Lazio / Black Forest Oak",
     leadTime: "8 — 10 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1530018607912-eff2daa1bac4-1200.webp",
     description: "Sculpted from a single block of un-filled Italian travertine with a double-chamfered architectural edge.",
     swatches: [
-      { id: "travertine", name: "Roman Travertine", colorHex: "#D8CEBD", image: "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&w=800&q=75" },
-      { id: "marquina", name: "Nero Marquina", colorHex: "#1E1E1E", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" },
-      { id: "oak", name: "Smoked French Oak", colorHex: "#4A3B32", image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=800&q=75" }
+      { id: "travertine", name: "Roman Travertine", colorHex: "#D8CEBD", image: "/images/products/photo-1530018607912-eff2daa1bac4-1200.webp" },
+      { id: "marquina", name: "Nero Marquina", colorHex: "#1E1E1E", image: "/images/products/photo-1600585154340-be6161a56a0c-1200.webp" },
+      { id: "oak", name: "Smoked French Oak", colorHex: "#4A3B32", image: "/images/products/photo-1533090161767-e6ffed986c88-1200.webp" }
     ]
   },
   {
@@ -118,12 +118,12 @@ export const PRODUCTS = [
     provenance: "Ghent Mills / Tuscan Beech Subframe",
     leadTime: "10 — 12 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1555041469-a586c61ea9bc-1200.webp",
     description: "Low-slung modular seating system configured with deep rectilinear cushions and solid walnut plinth base.",
     swatches: [
-      { id: "sand", name: "Belgian Sand Linen", colorHex: "#D5CAB9", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=75" },
-      { id: "boucle", name: "Heavy Bouclé Ivory", colorHex: "#EDE8DF", image: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=75" },
-      { id: "carmine", name: "Carmine Velvet", colorHex: "#8B1E2B", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=75" }
+      { id: "sand", name: "Belgian Sand Linen", colorHex: "#D5CAB9", image: "/images/products/photo-1555041469-a586c61ea9bc-1200.webp" },
+      { id: "boucle", name: "Heavy Bouclé Ivory", colorHex: "#EDE8DF", image: "/images/products/photo-1493663284031-b7e3aefcae8e-1200.webp" },
+      { id: "carmine", name: "Carmine Velvet", colorHex: "#8B1E2B", image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp" }
     ]
   },
   {
@@ -138,11 +138,11 @@ export const PRODUCTS = [
     provenance: "Burgundy French Oak / Cast Bronze Foundry",
     leadTime: "6 — 8 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1595428774223-ef52624120d2-1200.webp",
     description: "Hand-hewn fluted smoked oak fascia with patinated bronze pulls and soft-closing architectural reveals.",
     swatches: [
-      { id: "smoked-oak", name: "Smoked Oak", colorHex: "#3A3029", image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=75" },
-      { id: "natural-walnut", name: "Fluted Walnut", colorHex: "#684F3E", image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=75" }
+      { id: "smoked-oak", name: "Smoked Oak", colorHex: "#3A3029", image: "/images/products/photo-1595428774223-ef52624120d2-1200.webp" },
+      { id: "natural-walnut", name: "Fluted Walnut", colorHex: "#684F3E", image: "/images/products/photo-1538688525198-9b88f6f53126-1200.webp" }
     ]
   },
   {
@@ -157,11 +157,11 @@ export const PRODUCTS = [
     provenance: "Aragonese Alabaster / Verona Foundry",
     leadTime: "4 — 6 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1507473885765-e6ed057f782c-1200.webp",
     description: "Monolithic cast bronze column holding an internally illuminated sphere of honed Spanish alabaster.",
     swatches: [
-      { id: "bronze", name: "Cast Patinated Bronze", colorHex: "#453428", image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=75" },
-      { id: "brass", name: "Brushed Raw Brass", colorHex: "#B89B5F", image: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=75" }
+      { id: "bronze", name: "Cast Patinated Bronze", colorHex: "#453428", image: "/images/products/photo-1507473885765-e6ed057f782c-1200.webp" },
+      { id: "brass", name: "Brushed Raw Brass", colorHex: "#B89B5F", image: "/images/products/photo-1513506003901-1e6a229e2d15-1200.webp" }
     ]
   },
   {
@@ -176,11 +176,11 @@ export const PRODUCTS = [
     provenance: "Venetian Mirror Studios / Sand Cast Aluminum",
     leadTime: "4 — 6 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1618221195710-dd6b41faaea6-1200.webp",
     description: "Floor-standing architectural mirror framed in heavy textured cast aluminum with hand-silvered glass.",
     swatches: [
-      { id: "raw-alum", name: "Cast Aluminum", colorHex: "#A0A0A0", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=75" },
-      { id: "antique-bronze", name: "Antiqued Bronze", colorHex: "#4E3629", image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=75" }
+      { id: "raw-alum", name: "Cast Aluminum", colorHex: "#A0A0A0", image: "/images/products/photo-1618221195710-dd6b41faaea6-1200.webp" },
+      { id: "antique-bronze", name: "Antiqued Bronze", colorHex: "#4E3629", image: "/images/products/photo-1583847268964-b28dc8f51f92-1200.webp" }
     ]
   },
   {
@@ -195,10 +195,10 @@ export const PRODUCTS = [
     provenance: "Kyoto Joinery Methods / Alpine Ash",
     leadTime: "8 — 10 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1505693416388-ac5ce068fe85-1200.webp",
     description: "Minimalist Japanese-joinery daybed framed in blackened ash with custom saddle leather bolster tie-downs.",
     swatches: [
-      { id: "canvas", name: "Natural Canvas", colorHex: "#E5DAC9", image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=75" },
+      { id: "canvas", name: "Natural Canvas", colorHex: "#E5DAC9", image: "/images/products/photo-1505693416388-ac5ce068fe85-1200.webp" },
       { id: "saddle", name: "Saddle Tan Leather", colorHex: "#8B4513", image: "https://images.unsplash.com/photo-1540518614846-7ede433c4b69?auto=format&fit=crop&w=800&q=75" }
     ]
   },
@@ -214,7 +214,7 @@ export const PRODUCTS = [
     provenance: "Bavarian Jura Beds / American Walnut",
     leadTime: "6 — 8 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1533090161767-e6ffed986c88-1200.webp",
     description: "Sculptural coffee table balancing a monolithic Jura limestone slab over fluted walnut architectural fins."
   },
   {
@@ -229,7 +229,7 @@ export const PRODUCTS = [
     provenance: "Tuscan Tannery / Piedmont Walnut",
     leadTime: "4 — 6 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1567538096630-e0c55bd6374c-1200.webp",
     description: "Ergonomic continuous saddle leather sling suspended across sculpted solid walnut joinery."
   },
   {
@@ -244,7 +244,7 @@ export const PRODUCTS = [
     provenance: "Alsatian Forest Reserve / Forge Haute",
     leadTime: "8 — 10 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1538688525198-9b88f6f53126-1200.webp",
     description: "Vertical monumental storage piece showcasing end-grain quartered oak and hand-burnished iron hardware."
   },
   {
@@ -274,7 +274,7 @@ export const PRODUCTS = [
     provenance: "Como Velvet & Bouclé Mills / Swiss Beech",
     leadTime: "10 — 12 Weeks",
     isAccentRed: false,
-    image: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=75",
+    image: "/images/products/photo-1493663284031-b7e3aefcae8e-1200.webp",
     description: "Architectural corner seating anchor with generous proportions, floating reveal base, and double-padded ergonomics."
   }
 ];
@@ -316,7 +316,7 @@ export const ROOM_SHOWCASE = {
   title: "Spatial Sanctuary № 01",
   roomType: "Penthouse Living Gallery",
   dimensions: "140 sq m • 3.8m Ceiling Clearance",
-  image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80",
+  image: "/images/products/photo-1600210492486-724fe5c67fb0-1200.webp",
   hotspots: ROOM_HOTSPOTS
 };
 
