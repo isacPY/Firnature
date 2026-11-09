@@ -4,11 +4,13 @@ import { useStore } from '../state/store';
 import { animateRoomShowcase } from '../animations/room';
 import { scrollTo } from '../animations';
 import { ArrowUpRight } from 'lucide-react';
-import { handleImageFallback } from '../utils/placeholders';
+import { handleImageFallback, getLocalSrcset } from '../utils/placeholders';
 
 export function RoomShowcase() {
   const { setActiveCategory } = useStore();
   const [activeHotspot, setActiveHotspot] = useState(null);
+
+  const roomSrcset = getLocalSrcset(ROOM_SHOWCASE.image, '(max-width: 768px) calc(100vw - 40px), 1200px');
 
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
@@ -83,6 +85,7 @@ export function RoomShowcase() {
           <img
             ref={imageRef}
             src={ROOM_SHOWCASE.image}
+            {...(roomSrcset ? { srcSet: roomSrcset.srcSet, sizes: roomSrcset.sizes } : {})}
             onError={(e) => handleImageFallback(e, 'sofas')}
             alt="Interior Room Composition"
             className="w-full h-full object-cover will-change-transform gpu-layer"

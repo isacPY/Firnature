@@ -21,7 +21,7 @@ export const ProductCard = React.memo(function ProductCard({
 
   const currentSwatch = swatches[activeSwatchIndex] || swatches[0];
   const displayImage = currentSwatch.image || product.image;
-  const displaySrcset = getLocalSrcset(displayImage);
+  const displaySrcset = getLocalSrcset(displayImage, '(max-width: 768px) calc(100vw - 40px), 440px');
 
   const handleSelectSwatch = (e, index) => {
     e.stopPropagation();

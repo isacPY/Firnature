@@ -16,6 +16,7 @@ import {
 import { ETHOS_PILLARS, SHOWCASE_PALETTES } from '../config/ethosData';
 import { animateCardSwipe } from '../animations/ethosShowcase';
 import { useStore } from '../state/store';
+import { getLocalSrcset } from '../utils/placeholders';
 import { scrollTo } from '../animations';
 
 const ICON_MAP = {
@@ -43,6 +44,8 @@ export function EthosShowcase() {
 
   // Active pillar items
   const currentPillar = ETHOS_PILLARS[activeIdx] || ETHOS_PILLARS[0];
+  const currentSrcset = getLocalSrcset(currentPillar.image, '(max-width: 768px) 94vw, 700px');
+  const leftSrcset = getLocalSrcset(leftDroppedPillar.image, '(max-width: 768px) 94vw, 700px');
   const leftDroppedPillar = ETHOS_PILLARS[prevIdx] || ETHOS_PILLARS[ETHOS_PILLARS.length - 1];
 
   // Current active palette
@@ -256,6 +259,7 @@ export function EthosShowcase() {
           >
             <img
               src={leftDroppedPillar.image}
+              {...(leftSrcset ? { srcSet: leftSrcset.srcSet, sizes: leftSrcset.sizes } : {})}
               alt={leftDroppedPillar.title}
               loading="lazy"
               decoding="async"
@@ -291,6 +295,7 @@ export function EthosShowcase() {
           >
             <img
               src={currentPillar.image}
+              {...(currentSrcset ? { srcSet: currentSrcset.srcSet, sizes: currentSrcset.sizes } : {})}
               alt={currentPillar.title}
               fetchpriority="high"
               decoding="sync"

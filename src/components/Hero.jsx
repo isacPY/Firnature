@@ -40,7 +40,9 @@ export function Hero() {
   const diningChair = PRODUCTS.find((p) => p.id === "prod-9") || PRODUCTS[1];
   const heroTable = PRODUCTS.find((p) => p.id === "prod-2") || PRODUCTS[2];
   const credenza = PRODUCTS.find((p) => p.id === "prod-4") || PRODUCTS[3];
-  const heroSrcset = getLocalSrcset(heroTable.image);
+  const heroSrcset = getLocalSrcset(heroTable.image, '(max-width: 768px) calc(100vw - 40px), 800px');
+  const duoSrcset = getLocalSrcset(credenza.image, '(max-width: 768px) 50vw, 400px');
+  const duo2Srcset = getLocalSrcset(PRODUCTS[4].image, '(max-width: 768px) 50vw, 400px');
 
   return (
     <section
@@ -180,6 +182,7 @@ export function Hero() {
                 <div className="hero-reveal-photo aspect-[4/3] w-full overflow-hidden bg-ink/5 border border-grey/30">
                   <img
                     src={credenza.image}
+                    {...(duoSrcset ? { srcSet: duoSrcset.srcSet, sizes: duoSrcset.sizes } : {})}
                     onError={(e) => handleImageFallback(e, 'storage')}
                     alt={credenza.name}
                     loading="lazy"
@@ -199,6 +202,7 @@ export function Hero() {
                 <div className="hero-reveal-photo aspect-[4/3] w-full overflow-hidden bg-ink/5 border border-grey/30">
                   <img
                     src={PRODUCTS[4].image}
+                    {...(duo2Srcset ? { srcSet: duo2Srcset.srcSet, sizes: duo2Srcset.sizes } : {})}
                     onError={(e) => handleImageFallback(e, PRODUCTS[4].category)}
                     alt={PRODUCTS[4].name}
                     loading="lazy"

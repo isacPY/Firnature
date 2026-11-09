@@ -29,17 +29,21 @@ export function getFallbackPlaceholder(category) {
 
 /**
  * Build a srcset/sizes pair for a locally hosted WebP image.
- * Local product photos are saved as <photo>-600.webp and <photo>-1200.webp;
- * returns null for anything else (e.g. a remote URL), so the <img> just
- * uses its plain src with no srcset.
+ * Local product photos are saved as <photo>-600.webp, <photo>-900.webp and
+ * <photo>-1200.webp (same aspect ratio, same crop — only the file changes,
+ * never the displayed size); returns null for anything else (e.g. a remote
+ * URL), so the <img> just uses its plain src with no srcset.
  * @param {string} src
+ * @param {string} [sizes] - sizes override for this placement; defaults to
+ *   the product-card width. Pass the placement's true display width so the
+ *   browser picks the smallest file that stays sharp (never larger).
  * @returns {{ srcSet: string, sizes: string } | null}
  */
-export function getLocalSrcset(src) {
+export function getLocalSrcset(src, sizes) {
   if (typeof src !== 'string' || !src.endsWith('-1200.webp')) return null;
   return {
-    srcSet: `${src.replace('-1200.webp', '-600.webp')} 600w, ${src} 1200w`,
-    sizes: '(max-width: 768px) 600px, 1200px',
+    srcSet: `${src.replace('-1200.webp', '-600.webp')} 600w, ${src.replace('-1200.webp', '-900.webp')} 900w, ${src} 1200w`,
+    sizes: sizes || '(max-width: 768px) calc(100vw - 40px), 600px',
   };
 }
 
