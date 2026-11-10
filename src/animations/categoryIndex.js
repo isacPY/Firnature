@@ -25,9 +25,15 @@ export function animateCategoryIndex({
   let lastActiveIdx = -1;
   let lastContinuousIdx = -1;
 
-  // Pre-allocate quickSetters for opacity and scale on each base row to eliminate object allocations
+  // Pre-allocate quickSetters for opacity and scale on each base row to eliminate object allocations.
+  // NOTE: never use quickSetter(row, 'scale') — 'scale' is a compound alias
+  // (scaleX,scaleY) and quickSetter tries to setAttribute('scaleX,scaleY'),
+  // which throws InvalidCharacterError on every scroll tick, aborting the
+  // onUpdate loop before the active-index callback runs. Use the two single
+  // transform properties instead.
   const opSetters = baseRows.map((row) => gsap.quickSetter(row, 'opacity'));
-  const scaleSetters = baseRows.map((row) => gsap.quickSetter(row, 'scale'));
+  const scaleXSetters = baseRows.map((row) => gsap.quickSetter(row, 'scaleX'));
+  const scaleYSetters = baseRows.map((row) => gsap.quickSetter(row, 'scaleY'));
 
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -49,7 +55,8 @@ export function animateCategoryIndex({
             const opacity = Math.max(0.2, 1 - dist * 0.4);
             const scaleVal = Math.max(0.92, 1 - dist * 0.035);
             opSetters[i](opacity);
-            scaleSetters[i](scaleVal);
+            scaleXSetters[i](scaleVal);
+            scaleYSetters[i](scaleVal);
           }
         }
 

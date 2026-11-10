@@ -1,0 +1,95 @@
+diff --git a/src/animations/categoryIndex.js b/src/animations/categoryIndex.js
+index 49f3a7d..dd34134 100644
+--- a/src/animations/categoryIndex.js
++++ b/src/animations/categoryIndex.js
+@@ -25,9 +25,15 @@ export function animateCategoryIndex({
+   let lastActiveIdx = -1;
+   let lastContinuousIdx = -1;
+ 
+-  // Pre-allocate quickSetters for opacity and scale on each base row to eliminate object allocations
++  // Pre-allocate quickSetters for opacity and scale on each base row to eliminate object allocations.
++  // NOTE: never use quickSetter(row, 'scale') — 'scale' is a compound alias
++  // (scaleX,scaleY) and quickSetter tries to setAttribute('scaleX,scaleY'),
++  // which throws InvalidCharacterError on every scroll tick, aborting the
++  // onUpdate loop before the active-index callback runs. Use the two single
++  // transform properties instead.
+   const opSetters = baseRows.map((row) => gsap.quickSetter(row, 'opacity'));
+-  const scaleSetters = baseRows.map((row) => gsap.quickSetter(row, 'scale'));
++  const scaleXSetters = baseRows.map((row) => gsap.quickSetter(row, 'scaleX'));
++  const scaleYSetters = baseRows.map((row) => gsap.quickSetter(row, 'scaleY'));
+ 
+   const tl = gsap.timeline({
+     scrollTrigger: {
+@@ -49,7 +55,8 @@ export function animateCategoryIndex({
+             const opacity = Math.max(0.2, 1 - dist * 0.4);
+             const scaleVal = Math.max(0.92, 1 - dist * 0.035);
+             opSetters[i](opacity);
+-            scaleSetters[i](scaleVal);
++            scaleXSetters[i](scaleVal);
++            scaleYSetters[i](scaleVal);
+           }
+         }
+ 
+diff --git a/src/components/CategoryIndex.jsx b/src/components/CategoryIndex.jsx
+index 19708e1..9e58a7d 100644
+--- a/src/components/CategoryIndex.jsx
++++ b/src/components/CategoryIndex.jsx
+@@ -22,7 +22,7 @@ const CategoryRowList = React.memo(function CategoryRowList({ onSelect, isOverla
+             className="category-row h-28 flex items-center justify-center cursor-pointer group select-none"
+           >
+             {isOverlay ? (
+-              <span className="font-serif italic text-[clamp(2rem,4.2vw,4rem)] text-cream tracking-tight font-light group-hover:underline transition-colors duration-200">
++              <span className="font-serif italic text-[clamp(2rem,4.4vw,4.5rem)] text-cream tracking-tight font-light group-hover:underline transition-colors duration-200">
+                 {cat.name}
+                 <sup className="font-mono text-xs sm:text-sm text-cream ml-2 not-italic">
+                   (0{cat.count})
+@@ -34,7 +34,7 @@ const CategoryRowList = React.memo(function CategoryRowList({ onSelect, isOverla
+                 )}
+               </span>
+             ) : (
+-              <span className={`font-serif text-[clamp(2rem,4.2vw,4rem)] tracking-tight transition-colors duration-200 ${isExclusive ? 'italic text-red' : 'text-ink group-hover:italic'}`}>
++              <span className={`font-serif text-[clamp(2rem,4.4vw,4.5rem)] tracking-tight transition-colors duration-200 ${isExclusive ? 'italic text-red' : 'text-ink group-hover:italic'}`}>
+                 {cat.name}
+                 <sup className="font-mono text-xs sm:text-sm text-grey ml-2">
+                   (0{cat.count})
+@@ -127,8 +127,29 @@ export function CategoryIndex() {
+ 
+       {/* Central Area: Red Band + Dual-Layer Text Stack */}
+       <div className="relative w-full flex-1 overflow-hidden select-none">
+-        
+-        {/* Central Red Band: Pinned vertically at 50% with exact -48px margin */}
++
++        {/* Soft category backdrop — fills the void behind the rows */}
++        <img
++          key={`bg-${currentCategory.id}`}
++          src={currentCategory.image}
++          onError={(e) => handleImageFallback(e, currentCategory.id)}
++          alt=""
++          aria-hidden="true"
++          loading="lazy"
++          decoding="async"
++          className="absolute inset-0 w-full h-full object-cover opacity-[0.14] pointer-events-none animate-in fade-in duration-700"
++        />
++
++        {/* Giant ghost index numeral */}
++        <div
++          key={`ghost-${activeIdx}`}
++          aria-hidden="true"
++          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none animate-in fade-in duration-700"
++        >
++          <span className="font-display leading-none text-[clamp(16rem,38vw,26rem)] text-ink/[0.05]">0{activeIdx + 1}</span>
++        </div>
++
++        {/* Central Red Band: Pinned vertically at 50% with exact -56px margin */}
+         <div
+           className="absolute inset-x-0 h-28 bg-red z-10 flex items-center justify-between px-4 sm:px-12 pointer-events-none shadow-sm"
+           style={{ top: '50%', marginTop: '-56px' }}
+@@ -172,7 +193,7 @@ export function CategoryIndex() {
+           </div>
+         </div>
+ 
+-        {/* LAYER 1 (Base): Normal dark ink text on cream. Row 0 starts centered at top: 50%, marginTop: -48px */}
++        {/* LAYER 1 (Base): Normal dark ink text on cream. Row 0 starts centered at top: 50%, marginTop: -56px */}
+         <div
+           ref={baseListRef}
+           className="absolute inset-x-0 text-center will-change-transform z-0 select-none"
