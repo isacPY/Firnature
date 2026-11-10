@@ -1,19 +1,37 @@
 import React from 'react';
 import { MapPin, Clock, Phone, Mail, MessageSquare, ExternalLink } from 'lucide-react';
-import { BRAND_CONFIG, buildWhatsAppUrl } from '../config/brand';
+import { BRAND_CONFIG, ROOM_SHOWCASE, buildWhatsAppUrl } from '../config/brand';
+import { handleImageFallback, getLocalSrcset } from '../utils/placeholders';
 
 export function VisitSection() {
   const showroom = BRAND_CONFIG.showroom;
   const whatsappUrl = buildWhatsAppUrl();
+  const visitSrcset = getLocalSrcset(ROOM_SHOWCASE.image, '(max-width: 768px) calc(100vw - 40px), 1200px');
 
   return (
     <section
       id="contact"
-      className="relative w-full bg-cream py-20 sm:py-32 px-5 sm:px-8 border-b border-red/20 select-none"
+      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 select-none"
       aria-label="Showroom Visit and Inquiries"
     >
       <div className="max-w-[1440px] mx-auto">
-        
+
+        {/* Image strip — the collection in situ, carrying the mood into the visit */}
+        <div className="relative mb-10 sm:mb-14 overflow-hidden border border-grey/30">
+          <img
+            src={ROOM_SHOWCASE.image}
+            {...(visitSrcset ? { srcSet: visitSrcset.srcSet, sizes: visitSrcset.sizes } : {})}
+            onError={(e) => handleImageFallback(e, 'sofas')}
+            alt="Spatial Sanctuary — the collection in situ"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-56 sm:h-72 object-cover"
+          />
+          <div className="absolute bottom-4 left-4 bg-ink/70 backdrop-blur-md text-cream px-3.5 py-1.5 rounded-full text-[11px] font-sans tracking-wide">
+            Spatial Sanctuary № 01 — the collection, in situ
+          </div>
+        </div>
+
         {/* Header */}
         <div className="mb-12 sm:mb-16">
           <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-1">

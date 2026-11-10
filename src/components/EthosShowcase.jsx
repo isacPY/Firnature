@@ -132,7 +132,7 @@ export function EthosShowcase() {
         {/* Top Header Row */}
         <div className="shrink-0 pb-3 border-b border-white/15">
           <span className="font-mono text-[10px] sm:text-[11px] text-white uppercase tracking-[0.2em] font-semibold block">
-            03 — ARCHETYPES & LIGHTING
+            05 — ARCHETYPES & LIGHTING
           </span>
           <p className="font-serif italic text-xs text-white mt-0.5">
             Curated monolithic furniture & lighting collections

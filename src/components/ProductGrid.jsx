@@ -11,7 +11,9 @@ export function ProductGrid() {
 
   const filteredProducts = activeCategory === 'all'
     ? PRODUCTS
-    : PRODUCTS.filter((p) => p.category === activeCategory);
+    : activeCategory === 'exclusive'
+      ? PRODUCTS.filter((p) => p.exclusive)
+      : PRODUCTS.filter((p) => p.category === activeCategory);
 
   // Stable callbacks so ProductCard memo is never broken
   const handleToggleSave = useCallback((product) => toggleSave(product), [toggleSave]);
@@ -50,7 +52,7 @@ export function ProductGrid() {
   return (
     <section
       id="catalogue"
-      className="relative w-full bg-cream py-20 sm:py-28 px-5 sm:px-8 border-b border-red/20"
+      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20"
       aria-label="Furniture Collection Catalogue"
     >
       <div className="max-w-[1440px] mx-auto">
@@ -59,7 +61,7 @@ export function ProductGrid() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-grey/20">
           <div>
             <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-2">
-              04 — MONOLITHIC CATALOGUE
+              03 — MONOLITHIC CATALOGUE
             </span>
             <h2
               ref={headingRef}

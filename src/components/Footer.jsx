@@ -109,13 +109,6 @@ export function Footer() {
               Concierge & Flagship
             </span>
 
-            <p className="font-serif italic text-sm text-cream/90 leading-relaxed">
-              {BRAND_CONFIG.showroom.title}
-            </p>
-            <p className="text-cream/80">
-              {BRAND_CONFIG.showroom.address}, {BRAND_CONFIG.showroom.city}
-            </p>
-
             <div className="pt-2 space-y-1.5">
               <a
                 href={`tel:+${BRAND_CONFIG.showroom.phone.replace(/[^0-9]/g, '')}`}

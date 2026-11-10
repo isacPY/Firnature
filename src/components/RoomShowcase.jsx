@@ -49,7 +49,7 @@ export function RoomShowcase() {
     <section
       id="rooms"
       ref={sectionRef}
-      className="relative w-full bg-cream py-20 sm:py-32 px-5 sm:px-8 border-b border-red/20 overflow-hidden"
+      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 overflow-hidden"
       aria-label="Architectural Room Showcase"
     >
       <div className="max-w-[1440px] mx-auto">
@@ -58,7 +58,7 @@ export function RoomShowcase() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-12">
           <div>
             <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-1">
-              05 — SPATIAL COMPOSITION
+              04 — SPATIAL COMPOSITION
             </span>
             <h2
               ref={headingRef}
@@ -80,7 +80,7 @@ export function RoomShowcase() {
         {/* 16:9 Lifestyle Room Image Container with Hotspots */}
         <div
           ref={hotspotsContainerRef}
-          className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden border border-grey/30 bg-ink/5 select-none"
+          className="relative aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden border border-grey/30 bg-ink/5 select-none"
         >
           <img
             ref={imageRef}
@@ -155,6 +155,12 @@ export function RoomShowcase() {
             <span>Tap markers to reveal architectural specifications</span>
           </div>
 
+        </div>
+
+        {/* Caption strip — the three pieces in situ */}
+        <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-grey">
+          <span>Spatial Sanctuary № 01 — In Situ</span>
+          <span className="text-ink">L'Arc Lounge Chair · Monolith Travertine Table · Totem Floor Lamp</span>
         </div>
 
       </div>

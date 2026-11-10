@@ -99,6 +99,11 @@ export const ProductCard = React.memo(function ProductCard({
           <span className="font-mono text-[10px] uppercase tracking-widest bg-cream/90 text-ink px-2.5 py-1 backdrop-blur-xs border border-ink/10">
             {product.categoryLabel || product.category}
           </span>
+          {product.exclusive && (
+            <span className="font-display text-[10px] uppercase tracking-wider bg-ink text-cream px-2 py-0.5">
+              Exclusive
+            </span>
+          )}
           {product.isAccentRed && (
             <span className="font-display text-[10px] uppercase tracking-wider bg-red text-cream px-2 py-0.5">
               Haute Red

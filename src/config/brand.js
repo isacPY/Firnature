@@ -22,7 +22,7 @@ export const BRAND_CONFIG = {
     { label: "Catalogue", href: "#catalogue" },
     { label: "Archetypes", href: "#ethos-showcase" },
     { label: "Rooms", href: "#rooms" },
-    { label: "Private Viewing", href: "#appointment" },
+    { label: "Private Viewing", href: "#contact" },
     { label: "Materials", href: "#ethos-showcase" },
   ],
 
@@ -55,6 +55,7 @@ export const BRAND_CONFIG = {
 
 export const CATEGORIES = [
   { id: "all", name: "All Pieces", count: 12 },
+  { id: "exclusive", name: "Exclusive Collection", count: 3, image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp" },
   { id: "chairs", name: "Chairs", count: 3, image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp" },
   { id: "sofas", name: "Sofas", count: 2, image: "/images/products/photo-1555041469-a586c61ea9bc-1200.webp" },
   { id: "tables", name: "Tables", count: 2, image: "/images/products/photo-1530018607912-eff2daa1bac4-1200.webp" },
@@ -69,6 +70,7 @@ export const PRODUCTS = [
     id: "prod-1",
     name: "L'Arc Lounge Chair",
     category: "chairs",
+    exclusive: true,
     categoryLabel: "Chairs",
     materials: "Carmine Wool Bouclé, Matte Black Steel",
     dimensions: "W 92 × D 88 × H 74 cm",
@@ -90,6 +92,7 @@ export const PRODUCTS = [
     id: "prod-2",
     name: "Monolith Travertine Table",
     category: "tables",
+    exclusive: true,
     categoryLabel: "Tables",
     materials: "Honed Roman Travertine, Raw Oak Core",
     dimensions: "W 260 × D 110 × H 75 cm",
@@ -149,6 +152,7 @@ export const PRODUCTS = [
     id: "prod-5",
     name: "Totem Floor Lamp",
     category: "lighting",
+    exclusive: true,
     categoryLabel: "Lighting",
     materials: "Cast Bronze, Alabaster Diffuser",
     dimensions: "W 38 × D 38 × H 185 cm",

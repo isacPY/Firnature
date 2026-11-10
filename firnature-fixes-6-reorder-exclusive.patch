@@ -1,0 +1,412 @@
+diff --git a/src/App.jsx b/src/App.jsx
+index ace6417..7c8f101 100644
+--- a/src/App.jsx
++++ b/src/App.jsx
+@@ -64,9 +64,9 @@ export default function App() {
+         <Hero />
+         <Statement />
+         <CategoryIndex />
+-        <EthosShowcase />
+         <ProductGrid />
+         <RoomShowcase />
++        <EthosShowcase />
+         <VisitSection />
+       </main>
+ 
+diff --git a/src/animations/categoryIndex.js b/src/animations/categoryIndex.js
+index 13da989..49f3a7d 100644
+--- a/src/animations/categoryIndex.js
++++ b/src/animations/categoryIndex.js
+@@ -20,7 +20,7 @@ export function animateCategoryIndex({
+   const baseRows = Array.from(baseListRef.querySelectorAll('.category-row'));
+ 
+   // Calculate scroll height based on number of items (smooth feel)
+-  const scrollDistance = totalItems * 140;
++  const scrollDistance = totalItems * 90;
+ 
+   let lastActiveIdx = -1;
+   let lastContinuousIdx = -1;
+diff --git a/src/components/CategoryIndex.jsx b/src/components/CategoryIndex.jsx
+index 5824c31..19708e1 100644
+--- a/src/components/CategoryIndex.jsx
++++ b/src/components/CategoryIndex.jsx
+@@ -9,33 +9,46 @@ import { handleImageFallback } from '../utils/placeholders';
+ // Stable list of categories (excluding 'all') for editorial index rows
+ const DISPLAY_CATEGORIES = CATEGORIES.filter((c) => c.id !== "all");
+ 
+-// Memoized row list with uniform 96px height (h-24) to ensure exact vertical indexing
++// Memoized row list with uniform 112px height (h-28) to ensure exact vertical indexing
+ const CategoryRowList = React.memo(function CategoryRowList({ onSelect, isOverlay = false }) {
+   return (
+     <>
+-      {DISPLAY_CATEGORIES.map((cat) => (
+-        <div
+-          key={isOverlay ? `overlay-${cat.id}` : cat.id}
+-          onClick={() => onSelect(cat.id)}
+-          className="category-row h-24 flex items-center justify-center cursor-pointer group select-none"
+-        >
+-          {isOverlay ? (
+-            <span className="font-serif italic text-[clamp(1.9rem,4vw,3.6rem)] text-cream tracking-tight font-light group-hover:underline transition-colors duration-200">
+-              {cat.name}
+-              <sup className="font-mono text-xs sm:text-sm text-cream ml-2 not-italic">
+-                (0{cat.count})
+-              </sup>
+-            </span>
+-          ) : (
+-            <span className="font-serif text-[clamp(1.9rem,4vw,3.6rem)] text-ink tracking-tight group-hover:italic transition-colors duration-200">
+-              {cat.name}
+-              <sup className="font-mono text-xs sm:text-sm text-grey ml-2">
+-                (0{cat.count})
+-              </sup>
+-            </span>
+-          )}
+-        </div>
+-      ))}
++      {DISPLAY_CATEGORIES.map((cat) => {
++        const isExclusive = cat.id === 'exclusive';
++        return (
++          <div
++            key={isOverlay ? `overlay-${cat.id}` : cat.id}
++            onClick={() => onSelect(cat.id)}
++            className="category-row h-28 flex items-center justify-center cursor-pointer group select-none"
++          >
++            {isOverlay ? (
++              <span className="font-serif italic text-[clamp(2rem,4.2vw,4rem)] text-cream tracking-tight font-light group-hover:underline transition-colors duration-200">
++                {cat.name}
++                <sup className="font-mono text-xs sm:text-sm text-cream ml-2 not-italic">
++                  (0{cat.count})
++                </sup>
++                {isExclusive && (
++                  <span className="font-mono text-[10px] sm:text-xs text-cream tracking-[0.25em] ml-3 align-middle border border-cream/50 px-2 py-0.5 not-italic">
++                    Limited
++                  </span>
++                )}
++              </span>
++            ) : (
++              <span className={`font-serif text-[clamp(2rem,4.2vw,4rem)] tracking-tight transition-colors duration-200 ${isExclusive ? 'italic text-red' : 'text-ink group-hover:italic'}`}>
++                {cat.name}
++                <sup className="font-mono text-xs sm:text-sm text-grey ml-2">
++                  (0{cat.count})
++                </sup>
++                {isExclusive && (
++                  <span className="font-mono text-[10px] sm:text-xs text-red tracking-[0.25em] ml-3 align-middle border border-red/40 px-2 py-0.5">
++                    Limited
++                  </span>
++                )}
++              </span>
++            )}
++          </div>
++        );
++      })}
+     </>
+   );
+ });
+@@ -117,12 +130,12 @@ export function CategoryIndex() {
+         
+         {/* Central Red Band: Pinned vertically at 50% with exact -48px margin */}
+         <div
+-          className="absolute inset-x-0 h-24 bg-red z-10 flex items-center justify-between px-4 sm:px-12 pointer-events-none shadow-sm"
+-          style={{ top: '50%', marginTop: '-48px' }}
++          className="absolute inset-x-0 h-28 bg-red z-10 flex items-center justify-between px-4 sm:px-12 pointer-events-none shadow-sm"
++          style={{ top: '50%', marginTop: '-56px' }}
+         >
+           {/* Left Floating Category Thumbnail inside red band */}
+           <div className="hidden md:flex items-center gap-3">
+-            <div className="w-12 h-14 sm:w-14 sm:h-16 overflow-hidden bg-cream/10 border border-cream/30">
++            <div className="w-14 h-20 sm:w-16 sm:h-20 overflow-hidden bg-cream/10 border border-cream/30">
+               <img
+                 ref={thumbLeftRef}
+                 src={currentCategory.image}
+@@ -145,7 +158,7 @@ export function CategoryIndex() {
+               <span>Archetype</span>
+               <span className="block text-cream font-bold">0{activeIdx + 1} of 0{DISPLAY_CATEGORIES.length}</span>
+             </div>
+-            <div className="w-12 h-14 sm:w-14 sm:h-16 overflow-hidden bg-cream/10 border border-cream/30">
++            <div className="w-14 h-20 sm:w-16 sm:h-20 overflow-hidden bg-cream/10 border border-cream/30">
+               <img
+                 ref={thumbRightRef}
+                 src={currentCategory.image}
+@@ -163,15 +176,15 @@ export function CategoryIndex() {
+         <div
+           ref={baseListRef}
+           className="absolute inset-x-0 text-center will-change-transform z-0 select-none"
+-          style={{ top: '50%', marginTop: '-48px' }}
++          style={{ top: '50%', marginTop: '-56px' }}
+         >
+           <CategoryRowList onSelect={handleCategorySelect} isOverlay={false} />
+         </div>
+ 
+         {/* LAYER 2 (Overlay): White/cream text clipped to match red band (h-24, top: 50%, marginTop: -48px) */}
+         <div
+-          className="absolute inset-x-0 h-24 z-20 overflow-hidden pointer-events-none"
+-          style={{ top: '50%', marginTop: '-48px' }}
++          className="absolute inset-x-0 h-28 z-20 overflow-hidden pointer-events-none"
++          style={{ top: '50%', marginTop: '-56px' }}
+         >
+           <div
+             ref={overlayListRef}
+diff --git a/src/components/EthosShowcase.jsx b/src/components/EthosShowcase.jsx
+index 7755f79..dedc0cd 100644
+--- a/src/components/EthosShowcase.jsx
++++ b/src/components/EthosShowcase.jsx
+@@ -132,7 +132,7 @@ export function EthosShowcase() {
+         {/* Top Header Row */}
+         <div className="shrink-0 pb-3 border-b border-white/15">
+           <span className="font-mono text-[10px] sm:text-[11px] text-white uppercase tracking-[0.2em] font-semibold block">
+-            03 — ARCHETYPES & LIGHTING
++            05 — ARCHETYPES & LIGHTING
+           </span>
+           <p className="font-serif italic text-xs text-white mt-0.5">
+             Curated monolithic furniture & lighting collections
+diff --git a/src/components/Footer.jsx b/src/components/Footer.jsx
+index b83f1f4..e85c843 100644
+--- a/src/components/Footer.jsx
++++ b/src/components/Footer.jsx
+@@ -109,13 +109,6 @@ export function Footer() {
+               Concierge & Flagship
+             </span>
+ 
+-            <p className="font-serif italic text-sm text-cream/90 leading-relaxed">
+-              {BRAND_CONFIG.showroom.title}
+-            </p>
+-            <p className="text-cream/80">
+-              {BRAND_CONFIG.showroom.address}, {BRAND_CONFIG.showroom.city}
+-            </p>
+-
+             <div className="pt-2 space-y-1.5">
+               <a
+                 href={`tel:+${BRAND_CONFIG.showroom.phone.replace(/[^0-9]/g, '')}`}
+diff --git a/src/components/ProductCard.jsx b/src/components/ProductCard.jsx
+index 3635c2d..7ab3e6b 100644
+--- a/src/components/ProductCard.jsx
++++ b/src/components/ProductCard.jsx
+@@ -99,6 +99,11 @@ export const ProductCard = React.memo(function ProductCard({
+           <span className="font-mono text-[10px] uppercase tracking-widest bg-cream/90 text-ink px-2.5 py-1 backdrop-blur-xs border border-ink/10">
+             {product.categoryLabel || product.category}
+           </span>
++          {product.exclusive && (
++            <span className="font-display text-[10px] uppercase tracking-wider bg-ink text-cream px-2 py-0.5">
++              Exclusive
++            </span>
++          )}
+           {product.isAccentRed && (
+             <span className="font-display text-[10px] uppercase tracking-wider bg-red text-cream px-2 py-0.5">
+               Haute Red
+diff --git a/src/components/ProductGrid.jsx b/src/components/ProductGrid.jsx
+index a7c67a8..295341e 100644
+--- a/src/components/ProductGrid.jsx
++++ b/src/components/ProductGrid.jsx
+@@ -11,7 +11,9 @@ export function ProductGrid() {
+ 
+   const filteredProducts = activeCategory === 'all'
+     ? PRODUCTS
+-    : PRODUCTS.filter((p) => p.category === activeCategory);
++    : activeCategory === 'exclusive'
++      ? PRODUCTS.filter((p) => p.exclusive)
++      : PRODUCTS.filter((p) => p.category === activeCategory);
+ 
+   // Stable callbacks so ProductCard memo is never broken
+   const handleToggleSave = useCallback((product) => toggleSave(product), [toggleSave]);
+@@ -50,7 +52,7 @@ export function ProductGrid() {
+   return (
+     <section
+       id="catalogue"
+-      className="relative w-full bg-cream py-20 sm:py-28 px-5 sm:px-8 border-b border-red/20"
++      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20"
+       aria-label="Furniture Collection Catalogue"
+     >
+       <div className="max-w-[1440px] mx-auto">
+@@ -59,7 +61,7 @@ export function ProductGrid() {
+         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-grey/20">
+           <div>
+             <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-2">
+-              04 — MONOLITHIC CATALOGUE
++              03 — MONOLITHIC CATALOGUE
+             </span>
+             <h2
+               ref={headingRef}
+diff --git a/src/components/RoomShowcase.jsx b/src/components/RoomShowcase.jsx
+index 5744ce3..ffd4cd2 100644
+--- a/src/components/RoomShowcase.jsx
++++ b/src/components/RoomShowcase.jsx
+@@ -49,7 +49,7 @@ export function RoomShowcase() {
+     <section
+       id="rooms"
+       ref={sectionRef}
+-      className="relative w-full bg-cream py-20 sm:py-32 px-5 sm:px-8 border-b border-red/20 overflow-hidden"
++      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 overflow-hidden"
+       aria-label="Architectural Room Showcase"
+     >
+       <div className="max-w-[1440px] mx-auto">
+@@ -58,7 +58,7 @@ export function RoomShowcase() {
+         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-12">
+           <div>
+             <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-1">
+-              05 — SPATIAL COMPOSITION
++              04 — SPATIAL COMPOSITION
+             </span>
+             <h2
+               ref={headingRef}
+@@ -80,7 +80,7 @@ export function RoomShowcase() {
+         {/* 16:9 Lifestyle Room Image Container with Hotspots */}
+         <div
+           ref={hotspotsContainerRef}
+-          className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden border border-grey/30 bg-ink/5 select-none"
++          className="relative aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden border border-grey/30 bg-ink/5 select-none"
+         >
+           <img
+             ref={imageRef}
+@@ -157,6 +157,12 @@ export function RoomShowcase() {
+ 
+         </div>
+ 
++        {/* Caption strip — the three pieces in situ */}
++        <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-grey">
++          <span>Spatial Sanctuary № 01 — In Situ</span>
++          <span className="text-ink">L'Arc Lounge Chair · Monolith Travertine Table · Totem Floor Lamp</span>
++        </div>
++
+       </div>
+     </section>
+   );
+diff --git a/src/components/Statement.jsx b/src/components/Statement.jsx
+index e1b9e6d..e6a9e09 100644
+--- a/src/components/Statement.jsx
++++ b/src/components/Statement.jsx
+@@ -38,7 +38,7 @@ export function Statement() {
+     <section
+       id="statement-section"
+       ref={containerRef}
+-      className="relative w-full bg-cream py-20 sm:py-32 px-5 sm:px-8 border-b border-red/20 overflow-hidden"
++      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 overflow-hidden"
+       aria-label="Design Statement"
+     >
+       <div className="max-w-[1440px] mx-auto">
+@@ -50,11 +50,11 @@ export function Statement() {
+           </span>
+         </div>
+ 
+-        {/* High-Contrast Editorial Statement Headline */}
+-        <div className="relative">
++        {/* High-Contrast Editorial Statement Headline + Collection Stats */}
++        <div className="relative flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-16">
+           <h2
+             ref={textRef}
+-            className="font-serif font-light text-[clamp(2.2rem,4.8vw,4.8rem)] text-ink leading-[1.12] tracking-tight max-w-5xl select-none"
++            className="font-serif font-light text-[clamp(2.2rem,4.8vw,4.8rem)] text-ink leading-[1.12] tracking-tight max-w-5xl select-none lg:flex-1"
+           >
+             {[
+               "We", "do", "not", "furnish", "spaces.", "We", "anchor", "them.",
+@@ -76,6 +76,22 @@ export function Statement() {
+               );
+             })}
+           </h2>
++
++          {/* Right-column collection stats — balances the manifesto */}
++          <div className="shrink-0 lg:border-l lg:border-grey/20 lg:pl-10 flex lg:flex-col gap-8 lg:gap-6">
++            <div>
++              <div className="font-serif text-4xl sm:text-5xl text-ink leading-none">12</div>
++              <div className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-2">Pieces in the<br />Collection</div>
++            </div>
++            <div>
++              <div className="font-serif text-4xl sm:text-5xl text-ink leading-none">07</div>
++              <div className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-2">Architectural<br />Categories</div>
++            </div>
++            <div>
++              <div className="font-serif text-4xl sm:text-5xl text-red leading-none">24</div>
++              <div className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-2">Pieces per<br />Limited Run</div>
++            </div>
++          </div>
+         </div>
+ 
+         {/* Footer Meta Row */}
+diff --git a/src/components/VisitSection.jsx b/src/components/VisitSection.jsx
+index f5033f0..e203826 100644
+--- a/src/components/VisitSection.jsx
++++ b/src/components/VisitSection.jsx
+@@ -1,19 +1,37 @@
+ import React from 'react';
+ import { MapPin, Clock, Phone, Mail, MessageSquare, ExternalLink } from 'lucide-react';
+-import { BRAND_CONFIG, buildWhatsAppUrl } from '../config/brand';
++import { BRAND_CONFIG, ROOM_SHOWCASE, buildWhatsAppUrl } from '../config/brand';
++import { handleImageFallback, getLocalSrcset } from '../utils/placeholders';
+ 
+ export function VisitSection() {
+   const showroom = BRAND_CONFIG.showroom;
+   const whatsappUrl = buildWhatsAppUrl();
++  const visitSrcset = getLocalSrcset(ROOM_SHOWCASE.image, '(max-width: 768px) calc(100vw - 40px), 1200px');
+ 
+   return (
+     <section
+       id="contact"
+-      className="relative w-full bg-cream py-20 sm:py-32 px-5 sm:px-8 border-b border-red/20 select-none"
++      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 select-none"
+       aria-label="Showroom Visit and Inquiries"
+     >
+       <div className="max-w-[1440px] mx-auto">
+-        
++
++        {/* Image strip — the collection in situ, carrying the mood into the visit */}
++        <div className="relative mb-10 sm:mb-14 overflow-hidden border border-grey/30">
++          <img
++            src={ROOM_SHOWCASE.image}
++            {...(visitSrcset ? { srcSet: visitSrcset.srcSet, sizes: visitSrcset.sizes } : {})}
++            onError={(e) => handleImageFallback(e, 'sofas')}
++            alt="Spatial Sanctuary — the collection in situ"
++            loading="lazy"
++            decoding="async"
++            className="w-full h-56 sm:h-72 object-cover"
++          />
++          <div className="absolute bottom-4 left-4 bg-ink/70 backdrop-blur-md text-cream px-3.5 py-1.5 rounded-full text-[11px] font-sans tracking-wide">
++            Spatial Sanctuary № 01 — the collection, in situ
++          </div>
++        </div>
++
+         {/* Header */}
+         <div className="mb-12 sm:mb-16">
+           <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-1">
+diff --git a/src/config/brand.js b/src/config/brand.js
+index 7ccfe4f..8b7d3be 100644
+--- a/src/config/brand.js
++++ b/src/config/brand.js
+@@ -22,7 +22,7 @@ export const BRAND_CONFIG = {
+     { label: "Catalogue", href: "#catalogue" },
+     { label: "Archetypes", href: "#ethos-showcase" },
+     { label: "Rooms", href: "#rooms" },
+-    { label: "Private Viewing", href: "#appointment" },
++    { label: "Private Viewing", href: "#contact" },
+     { label: "Materials", href: "#ethos-showcase" },
+   ],
+ 
+@@ -55,6 +55,7 @@ export const BRAND_CONFIG = {
+ 
+ export const CATEGORIES = [
+   { id: "all", name: "All Pieces", count: 12 },
++  { id: "exclusive", name: "Exclusive Collection", count: 3, image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp" },
+   { id: "chairs", name: "Chairs", count: 3, image: "/images/products/photo-1586023492125-27b2c045efd7-1200.webp" },
+   { id: "sofas", name: "Sofas", count: 2, image: "/images/products/photo-1555041469-a586c61ea9bc-1200.webp" },
+   { id: "tables", name: "Tables", count: 2, image: "/images/products/photo-1530018607912-eff2daa1bac4-1200.webp" },
+@@ -69,6 +70,7 @@ export const PRODUCTS = [
+     id: "prod-1",
+     name: "L'Arc Lounge Chair",
+     category: "chairs",
++    exclusive: true,
+     categoryLabel: "Chairs",
+     materials: "Carmine Wool Bouclé, Matte Black Steel",
+     dimensions: "W 92 × D 88 × H 74 cm",
+@@ -90,6 +92,7 @@ export const PRODUCTS = [
+     id: "prod-2",
+     name: "Monolith Travertine Table",
+     category: "tables",
++    exclusive: true,
+     categoryLabel: "Tables",
+     materials: "Honed Roman Travertine, Raw Oak Core",
+     dimensions: "W 260 × D 110 × H 75 cm",
+@@ -149,6 +152,7 @@ export const PRODUCTS = [
+     id: "prod-5",
+     name: "Totem Floor Lamp",
+     category: "lighting",
++    exclusive: true,
+     categoryLabel: "Lighting",
+     materials: "Cast Bronze, Alabaster Diffuser",
+     dimensions: "W 38 × D 38 × H 185 cm",

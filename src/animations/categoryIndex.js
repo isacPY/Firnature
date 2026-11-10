@@ -20,7 +20,7 @@ export function animateCategoryIndex({
   const baseRows = Array.from(baseListRef.querySelectorAll('.category-row'));
 
   // Calculate scroll height based on number of items (smooth feel)
-  const scrollDistance = totalItems * 140;
+  const scrollDistance = totalItems * 90;
 
   let lastActiveIdx = -1;
   let lastContinuousIdx = -1;

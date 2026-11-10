@@ -64,9 +64,9 @@ export default function App() {
         <Hero />
         <Statement />
         <CategoryIndex />
-        <EthosShowcase />
         <ProductGrid />
         <RoomShowcase />
+        <EthosShowcase />
         <VisitSection />
       </main>
 

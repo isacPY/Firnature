@@ -9,33 +9,46 @@ import { handleImageFallback } from '../utils/placeholders';
 // Stable list of categories (excluding 'all') for editorial index rows
 const DISPLAY_CATEGORIES = CATEGORIES.filter((c) => c.id !== "all");
 
-// Memoized row list with uniform 96px height (h-24) to ensure exact vertical indexing
+// Memoized row list with uniform 112px height (h-28) to ensure exact vertical indexing
 const CategoryRowList = React.memo(function CategoryRowList({ onSelect, isOverlay = false }) {
   return (
     <>
-      {DISPLAY_CATEGORIES.map((cat) => (
-        <div
-          key={isOverlay ? `overlay-${cat.id}` : cat.id}
-          onClick={() => onSelect(cat.id)}
-          className="category-row h-24 flex items-center justify-center cursor-pointer group select-none"
-        >
-          {isOverlay ? (
-            <span className="font-serif italic text-[clamp(1.9rem,4vw,3.6rem)] text-cream tracking-tight font-light group-hover:underline transition-colors duration-200">
-              {cat.name}
-              <sup className="font-mono text-xs sm:text-sm text-cream ml-2 not-italic">
-                (0{cat.count})
-              </sup>
-            </span>
-          ) : (
-            <span className="font-serif text-[clamp(1.9rem,4vw,3.6rem)] text-ink tracking-tight group-hover:italic transition-colors duration-200">
-              {cat.name}
-              <sup className="font-mono text-xs sm:text-sm text-grey ml-2">
-                (0{cat.count})
-              </sup>
-            </span>
-          )}
-        </div>
-      ))}
+      {DISPLAY_CATEGORIES.map((cat) => {
+        const isExclusive = cat.id === 'exclusive';
+        return (
+          <div
+            key={isOverlay ? `overlay-${cat.id}` : cat.id}
+            onClick={() => onSelect(cat.id)}
+            className="category-row h-28 flex items-center justify-center cursor-pointer group select-none"
+          >
+            {isOverlay ? (
+              <span className="font-serif italic text-[clamp(2rem,4.2vw,4rem)] text-cream tracking-tight font-light group-hover:underline transition-colors duration-200">
+                {cat.name}
+                <sup className="font-mono text-xs sm:text-sm text-cream ml-2 not-italic">
+                  (0{cat.count})
+                </sup>
+                {isExclusive && (
+                  <span className="font-mono text-[10px] sm:text-xs text-cream tracking-[0.25em] ml-3 align-middle border border-cream/50 px-2 py-0.5 not-italic">
+                    Limited
+                  </span>
+                )}
+              </span>
+            ) : (
+              <span className={`font-serif text-[clamp(2rem,4.2vw,4rem)] tracking-tight transition-colors duration-200 ${isExclusive ? 'italic text-red' : 'text-ink group-hover:italic'}`}>
+                {cat.name}
+                <sup className="font-mono text-xs sm:text-sm text-grey ml-2">
+                  (0{cat.count})
+                </sup>
+                {isExclusive && (
+                  <span className="font-mono text-[10px] sm:text-xs text-red tracking-[0.25em] ml-3 align-middle border border-red/40 px-2 py-0.5">
+                    Limited
+                  </span>
+                )}
+              </span>
+            )}
+          </div>
+        );
+      })}
     </>
   );
 });
@@ -117,12 +130,12 @@ export function CategoryIndex() {
         
         {/* Central Red Band: Pinned vertically at 50% with exact -48px margin */}
         <div
-          className="absolute inset-x-0 h-24 bg-red z-10 flex items-center justify-between px-4 sm:px-12 pointer-events-none shadow-sm"
-          style={{ top: '50%', marginTop: '-48px' }}
+          className="absolute inset-x-0 h-28 bg-red z-10 flex items-center justify-between px-4 sm:px-12 pointer-events-none shadow-sm"
+          style={{ top: '50%', marginTop: '-56px' }}
         >
           {/* Left Floating Category Thumbnail inside red band */}
           <div className="hidden md:flex items-center gap-3">
-            <div className="w-12 h-14 sm:w-14 sm:h-16 overflow-hidden bg-cream/10 border border-cream/30">
+            <div className="w-14 h-20 sm:w-16 sm:h-20 overflow-hidden bg-cream/10 border border-cream/30">
               <img
                 ref={thumbLeftRef}
                 src={currentCategory.image}
@@ -145,7 +158,7 @@ export function CategoryIndex() {
               <span>Archetype</span>
               <span className="block text-cream font-bold">0{activeIdx + 1} of 0{DISPLAY_CATEGORIES.length}</span>
             </div>
-            <div className="w-12 h-14 sm:w-14 sm:h-16 overflow-hidden bg-cream/10 border border-cream/30">
+            <div className="w-14 h-20 sm:w-16 sm:h-20 overflow-hidden bg-cream/10 border border-cream/30">
               <img
                 ref={thumbRightRef}
                 src={currentCategory.image}
@@ -163,15 +176,15 @@ export function CategoryIndex() {
         <div
           ref={baseListRef}
           className="absolute inset-x-0 text-center will-change-transform z-0 select-none"
-          style={{ top: '50%', marginTop: '-48px' }}
+          style={{ top: '50%', marginTop: '-56px' }}
         >
           <CategoryRowList onSelect={handleCategorySelect} isOverlay={false} />
         </div>
 
         {/* LAYER 2 (Overlay): White/cream text clipped to match red band (h-24, top: 50%, marginTop: -48px) */}
         <div
-          className="absolute inset-x-0 h-24 z-20 overflow-hidden pointer-events-none"
-          style={{ top: '50%', marginTop: '-48px' }}
+          className="absolute inset-x-0 h-28 z-20 overflow-hidden pointer-events-none"
+          style={{ top: '50%', marginTop: '-56px' }}
         >
           <div
             ref={overlayListRef}
