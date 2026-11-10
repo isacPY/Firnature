@@ -36,7 +36,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 340 × D 160 × H 68 cm',
     cardDescription: 'Low-slung modular seating system configured with deep rectilinear cushions and solid walnut plinth base.',
     badgeLabel: 'Sofas',
-    image: '/images/products/photo-1555041469-a586c61ea9bc-1200.webp',
+    image: '/images/products/palazzo-sand-linen-sofa-1200.webp',
     pieceCount: '02 Pieces'
   },
   {
@@ -50,7 +50,7 @@ export const ETHOS_PILLARS = [
     cardDimensions: 'W 260 × D 110 × H 75 cm',
     cardDescription: 'Sculpted from a single block of un-filled Italian travertine with a double-chamfered architectural edge.',
     badgeLabel: 'Tables',
-    image: '/images/products/photo-1530018607912-eff2daa1bac4-1200.webp',
+    image: '/images/products/monolith-travertine-table-1200.webp',
     pieceCount: '02 Pieces'
   },
   {

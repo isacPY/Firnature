@@ -1,0 +1,54 @@
+diff --git a/src/components/Statement.jsx b/src/components/Statement.jsx
+index 3e46efa..ca975ac 100644
+--- a/src/components/Statement.jsx
++++ b/src/components/Statement.jsx
+@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
+ import gsap from 'gsap';
+ import { ScrollTrigger } from 'gsap/ScrollTrigger';
+ import { getLocalSrcset } from '../utils/placeholders';
++import { isReducedMotion } from '../animations';
+ 
+ export function Statement() {
+   const containerRef = useRef(null);
+@@ -13,23 +14,25 @@ export function Statement() {
+     const words = textRef.current.querySelectorAll('.statement-word');
+     if (!words.length) return;
+ 
+-    // Subtle scroll illumination while keeping text 100% crisp and readable
++    // Same word-rise reveal as the catalogue heading ("Curated Living Artifacts."):
++    // each word rises into place and fades in once, when the headline enters view.
++    // Reduced-motion users keep the plain, fully visible text.
++    if (isReducedMotion()) return;
++
+     const ctx = gsap.context(() => {
+-      gsap.fromTo(
+-        words,
+-        { opacity: 0.5 },
+-        {
+-          opacity: 1,
+-          stagger: 0.025,
+-          ease: 'power1.out',
+-          scrollTrigger: {
+-            trigger: containerRef.current,
+-            start: 'top 85%',
+-            end: 'bottom 45%',
+-            scrub: 0.35,
+-          }
+-        }
+-      );
++      gsap.set(words, { y: 26, opacity: 0 });
++      gsap.to(words, {
++        y: 0,
++        opacity: 1,
++        duration: 0.8,
++        stagger: 0.025,
++        ease: 'power3.out',
++        scrollTrigger: {
++          trigger: textRef.current,
++          start: 'top 85%',
++          once: true,
++        },
++      });
+     }, containerRef);
+ 
+     return () => ctx.revert();

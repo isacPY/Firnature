@@ -155,8 +155,6 @@ export function Footer() {
                 Confidential Pitch Monograph
               </button>
             )}
-            <span className="text-cream/50">Terms of Commission</span>
-            <span className="text-cream/50">Provenance Registry</span>
           </div>
         </div>
 

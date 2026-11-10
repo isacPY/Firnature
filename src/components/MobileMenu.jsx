@@ -8,6 +8,7 @@ export function MobileMenu() {
   const {
     isMobileMenuOpen,
     setIsMobileMenuOpen,
+    openAppointment,
     savedProducts,
     bagCount,
     setIsSearchOpen,
@@ -29,6 +30,11 @@ export function MobileMenu() {
 
   const handleLinkClick = (href) => {
     setIsMobileMenuOpen(false);
+    // "Private Viewing" is a booking action, not a scroll target — open the modal.
+    if (href === '#appointment') {
+      openAppointment();
+      return;
+    }
     setTimeout(() => {
       scrollTo(href);
     }, 150);
@@ -75,7 +81,7 @@ export function MobileMenu() {
           className="text-left font-serif italic text-4xl sm:text-5xl text-cream hover:translate-x-3 transition-transform duration-300 flex items-baseline gap-4"
         >
           <span className="font-display text-sm tracking-widest text-cream/60 not-italic">
-            05
+            06
           </span>
           <span>Showroom Visit</span>
         </button>

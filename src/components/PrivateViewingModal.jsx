@@ -183,10 +183,14 @@ export function PrivateViewingModal() {
                 id="apt-date"
                 type="date"
                 required
+                min={new Date().toLocaleDateString('en-CA')}
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className="w-full py-2 px-3 bg-white border border-grey/30 rounded-sm font-mono text-xs text-ink focus:border-red focus:outline-none"
               />
+              <p className="font-mono text-[10px] text-grey mt-1.5 leading-relaxed">
+                Showroom open Tuesday – Saturday, 10:00 – 18:00 · Monday by private appointment.
+              </p>
             </div>
 
             <div>

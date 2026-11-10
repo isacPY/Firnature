@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Monitor, X, CheckCircle2, Laptop, Smartphone, Tablet } from 'lucide-react';
 import { useStore } from '../state/store';
+import { PRODUCTS } from '../config/brand';
+import { getLocalSrcset } from '../utils/placeholders';
 
 export function DeviceEndCard() {
   const { isDeviceEndCardOpen, setIsDeviceEndCardOpen } = useStore();
@@ -136,21 +138,32 @@ export function DeviceEndCard() {
                     : 'grid-cols-3'
                 }`}
               >
-                <div className="aspect-[3/4] bg-ink/5 border border-grey/20 p-2 flex flex-col justify-between">
-                  <span className="text-[9px] font-display text-red tracking-wider">CHAIRS</span>
-                  <div className="w-full h-12 bg-red/10 rounded flex items-center justify-center text-[10px] text-red font-mono">3:4 RATIO</div>
-                </div>
-                <div className="aspect-[3/4] bg-ink/5 border border-grey/20 p-2 flex flex-col justify-between">
-                  <span className="text-[9px] font-display text-red tracking-wider">SOFAS</span>
-                  <div className="w-full h-12 bg-red/10 rounded flex items-center justify-center text-[10px] text-red font-mono">FLUID CLAMP</div>
-                </div>
-                {(viewportMode !== 'mobile') && (
-                  <div className="aspect-[3/4] bg-ink/5 border border-grey/20 p-2 flex flex-col justify-between">
-                    <span className="text-[9px] font-display text-red tracking-wider">TABLES</span>
-                    <div className="w-full h-12 bg-red/10 rounded flex items-center justify-center text-[10px] text-red font-mono">TOUCH READY</div>
+              {/* Real catalogue cards — the preview shows the actual pieces, not wireframes */}
+              {[PRODUCTS[0], PRODUCTS[1], PRODUCTS[2]].map((product, i) => (
+                <div
+                  key={product.id}
+                  className={`aspect-[3/4] bg-ink/5 border border-grey/20 flex flex-col overflow-hidden ${
+                    i === 2 && viewportMode === 'mobile' ? 'hidden' : ''
+                  }`}
+                >
+                  <img
+                    src={product.image}
+                    {...getLocalSrcset(product.image, '(max-width: 768px) 280px, 320px')}
+                    alt={product.name}
+                    loading="lazy"
+                    className="w-full flex-1 min-h-0 object-cover"
+                  />
+                  <div className="p-2 bg-cream border-t border-grey/20">
+                    <span className="text-[9px] font-display text-red tracking-wider block uppercase">
+                      {product.categoryLabel}
+                    </span>
+                    <span className="font-serif text-xs text-ink block leading-tight mt-0.5">
+                      {product.name}
+                    </span>
                   </div>
-                )}
-              </div>
+                </div>
+              ))}
+            </div>
             </div>
           </div>
         </div>

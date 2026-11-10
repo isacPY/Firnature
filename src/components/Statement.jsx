@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { getLocalSrcset } from '../utils/placeholders';
 
 export function Statement() {
   const containerRef = useRef(null);
@@ -51,7 +52,7 @@ export function Statement() {
         </div>
 
         {/* High-Contrast Editorial Statement Headline + Collection Stats */}
-        <div className="relative flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-16">
+        <div className="relative flex flex-col lg:flex-row lg:items-stretch gap-10 lg:gap-16">
           <h2
             ref={textRef}
             className="font-serif font-light text-[clamp(2.2rem,4.8vw,4.8rem)] text-ink leading-[1.12] tracking-tight max-w-5xl select-none lg:flex-1"
@@ -77,8 +78,21 @@ export function Statement() {
             })}
           </h2>
 
-          {/* Right-column collection stats — balances the manifesto */}
-          <div className="shrink-0 lg:border-l lg:border-grey/20 lg:pl-10 flex lg:flex-col gap-8 lg:gap-6">
+          {/* Right-column plate + collection stats — fills the column top to bottom */}
+          <div className="shrink-0 lg:border-l lg:border-grey/20 lg:pl-10 flex lg:flex-col lg:justify-between gap-8 lg:gap-6">
+            <figure className="hidden lg:block">
+              <img
+                src="/images/products/dune-occasional-chair-1200.webp"
+                {...getLocalSrcset('/images/products/dune-occasional-chair-1200.webp', '240px')}
+                alt="Dune Occasional Chair — raw sheepskin, sculpted shell"
+                loading="lazy"
+                className="aspect-[4/5] w-full max-w-[240px] object-cover"
+              />
+              <figcaption className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-3">
+                Dune Occasional Chair — Nº 11
+              </figcaption>
+            </figure>
+            <div className="flex lg:flex-col gap-8 lg:gap-6">
             <div>
               <div className="font-serif text-4xl sm:text-5xl text-ink leading-none">12</div>
               <div className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-2">Pieces in the<br />Collection</div>
@@ -90,6 +104,7 @@ export function Statement() {
             <div>
               <div className="font-serif text-4xl sm:text-5xl text-red leading-none">24</div>
               <div className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-2">Pieces per<br />Limited Run</div>
+            </div>
             </div>
           </div>
         </div>
