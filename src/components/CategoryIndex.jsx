@@ -57,6 +57,12 @@ export function CategoryIndex() {
   const { setActiveCategory, activeCategory } = useStore();
   const [activeIdx, setActiveIdx] = useState(0);
 
+  // Mobile scroll-active row: the category the red bar + thumbnails follow
+  // as the user scrolls through the mobile index (HALDEN behaviour — the
+  // bar moves with the scroll, and the images show for the category you
+  // stop on). Tapping a row sets this too, so tap and scroll stay in sync.
+  const [scrollActiveId, setScrollActiveId] = useState('all');
+
   // Mobile (<768px) uses a simple scrolling list instead of the pinned
   // full-screen dual-layer effect — the pinned version is too long and slow
   // on a phone, and its non-active rows read as faint grey text.
@@ -79,8 +85,30 @@ export function CategoryIndex() {
 
   const handleCategorySelect = useCallback((categoryId) => {
     setActiveCategory(categoryId);
+    setScrollActiveId(categoryId);
     scrollTo('#catalogue');
   }, [setActiveCategory]);
+
+  // Mobile: as the user scrolls through the index, the red bar + thumbnails
+  // follow the row nearest the viewport centre; when they stop scrolling,
+  // the images for that category are showing. Tapping a row still selects it.
+  useEffect(() => {
+    if (!isMobile) return;
+    const rows = Array.from(document.querySelectorAll('#category-index button'));
+    if (!rows.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (!visible.length) return;
+        visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        const id = visible[0].target.getAttribute('data-cat-id');
+        if (id) setScrollActiveId((prev) => (prev === id ? prev : id));
+      },
+      { rootMargin: '-42% 0px -42% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+    rows.forEach((row) => observer.observe(row));
+    return () => observer.disconnect();
+  }, [isMobile]);
 
   useEffect(() => {
     if (isMobile) return;
@@ -116,11 +144,21 @@ export function CategoryIndex() {
   }, [activeIdx, isMobile]);
 
   // --- Mobile: simple scrolling list, red bar on the selected category ---
+  // HALDEN's index: "All products" first, then the categories, with small
+  // product thumbnails flanking the red active-row bar.
   if (isMobile) {
-    const activeId = DISPLAY_CATEGORIES.some((c) => c.id === activeCategory)
-      ? activeCategory
-      : DISPLAY_CATEGORIES[0].id;
-    const activePos = DISPLAY_CATEGORIES.findIndex((c) => c.id === activeId) + 1;
+    // Mobile list = every category, starting with "All products" (HALDEN's
+    // first row). 'all' has no image of its own — thumbnails fall back to
+    // the Exclusive Collection image. The red bar + thumbnails follow the
+    // scroll-active row (scrollActiveId), not the tapped filter.
+    const MOBILE_CATEGORIES = CATEGORIES;
+    const activeId = MOBILE_CATEGORIES.some((c) => c.id === scrollActiveId)
+      ? scrollActiveId
+      : 'all';
+    const activePos = MOBILE_CATEGORIES.findIndex((c) => c.id === activeId) + 1;
+    const activeCat = MOBILE_CATEGORIES.find((c) => c.id === activeId) || MOBILE_CATEGORIES[0];
+    const thumbSrc = activeCat.image || DISPLAY_CATEGORIES[0].image;
+    const thumbFallbackId = activeId === 'all' ? 'exclusive' : activeId;
 
     return (
       <section
@@ -141,30 +179,56 @@ export function CategoryIndex() {
         </div>
 
         <div className="mt-8">
-          {DISPLAY_CATEGORIES.map((cat) => {
+          {MOBILE_CATEGORIES.map((cat) => {
             const isExclusive = cat.id === 'exclusive';
             const isActive = cat.id === activeId;
+            const label = cat.id === 'all' ? 'All products' : cat.name;
             return (
               <button
                 key={cat.id}
                 type="button"
+                data-cat-id={cat.id}
                 onClick={() => handleCategorySelect(cat.id)}
-                className={`w-full h-16 flex items-center justify-center cursor-pointer select-none transition-colors duration-200 ${
+                className={`relative w-full h-16 flex items-center justify-center cursor-pointer select-none transition-colors duration-200 ${
                   isActive ? 'bg-red' : 'bg-transparent'
                 }`}
                 aria-pressed={isActive}
               >
-                <span className={`font-serif text-[2rem] leading-none tracking-tight ${
+                {isActive && (
+                  <>
+                    <span className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-12 overflow-hidden bg-cream/10 border border-cream/30 pointer-events-none">
+                      <img
+                        src={thumbSrc}
+                        onError={(e) => handleImageFallback(e, thumbFallbackId)}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover"
+                      />
+                    </span>
+                    <span className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-12 overflow-hidden bg-cream/10 border border-cream/30 pointer-events-none">
+                      <img
+                        src={thumbSrc}
+                        onError={(e) => handleImageFallback(e, thumbFallbackId)}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover"
+                      />
+                    </span>
+                  </>
+                )}
+                <span className={`font-serif text-[1.9rem] leading-none tracking-tight ${
                   isActive ? 'italic text-cream font-light' : isExclusive ? 'italic text-red' : 'text-ink'
                 }`}>
-                  {cat.name}
+                  {label}
                   <sup className={`font-mono text-xs ml-2 not-italic ${isActive ? 'text-cream' : 'text-grey'}`}>
                     (0{cat.count})
                   </sup>
-                  {isExclusive && (
-                    <span className={`font-mono text-[10px] tracking-[0.25em] ml-3 align-middle border px-2 py-0.5 not-italic ${
-                      isActive ? 'text-cream border-cream/50' : 'text-red border-red/40'
-                    }`}>
+                  {isExclusive && !isActive && (
+                    <span className="font-mono text-[10px] tracking-[0.25em] ml-3 align-middle border px-2 py-0.5 not-italic text-red border-red/40">
                       Limited
                     </span>
                   )}
@@ -175,7 +239,7 @@ export function CategoryIndex() {
         </div>
 
         <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between text-grey font-mono text-[10px] uppercase tracking-widest pt-6">
-          <span>0{activePos} / 0{DISPLAY_CATEGORIES.length} Archetype Selected</span>
+          <span>0{activePos} / 0{MOBILE_CATEGORIES.length} Archetype Selected</span>
           <span>Tap any row to jump to catalogue</span>
         </div>
       </section>
