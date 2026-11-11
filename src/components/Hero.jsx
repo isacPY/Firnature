@@ -107,7 +107,7 @@ export function Hero() {
           
           {/* Left Column: Dining Chair Floating Thumbnail & Tagline */}
           <div className="md:col-span-5 space-y-6">
-            <div className="hero-fade-caption flex items-center gap-4">
+            <div className="hero-fade-caption hidden md:flex items-center gap-4">
               <div className="hero-reveal-photo w-20 h-26 sm:w-24 sm:h-32 overflow-hidden bg-ink/5 border border-grey/30 shrink-0">
                 <img
                   src={diningChair.image}

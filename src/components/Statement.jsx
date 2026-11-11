@@ -17,7 +17,10 @@ export function Statement() {
     // Same word-rise reveal as the catalogue heading ("Curated Living Artifacts."):
     // each word rises into place and fades in once, when the headline enters view.
     // Reduced-motion users keep the plain, fully visible text.
+    // Mobile (<768px) keeps the plain, fully visible text too — the slow
+    // word-by-word rise reads as faded/broken copy on a phone.
     if (isReducedMotion()) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches) return;
 
     const ctx = gsap.context(() => {
       gsap.set(words, { y: 26, opacity: 0 });
@@ -42,14 +45,14 @@ export function Statement() {
     <section
       id="statement-section"
       ref={containerRef}
-      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 overflow-hidden"
+      className="relative w-full bg-cream max-md:bg-red py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 overflow-hidden"
       aria-label="Design Statement"
     >
       <div className="max-w-[1440px] mx-auto">
         {/* Section Identifier */}
         <div className="flex items-center gap-2 mb-6 sm:mb-10">
-          <span className="w-2.5 h-2.5 rounded-full bg-red animate-pulse" />
-          <span className="font-display text-xs sm:text-sm text-red tracking-[0.18em] uppercase font-semibold">
+          <span className="w-2.5 h-2.5 rounded-full bg-red max-md:bg-cream animate-pulse" />
+          <span className="font-display text-xs sm:text-sm text-red max-md:text-cream tracking-[0.18em] uppercase font-semibold">
             01 — THE ATELIER MANIFESTO
           </span>
         </div>
@@ -58,7 +61,7 @@ export function Statement() {
         <div className="relative flex flex-col lg:flex-row lg:items-stretch gap-10 lg:gap-16">
           <h2
             ref={textRef}
-            className="font-serif font-light text-[clamp(2.2rem,4.8vw,4.8rem)] text-ink leading-[1.12] tracking-tight max-w-5xl select-none lg:flex-1"
+            className="font-serif font-light text-[clamp(2.2rem,4.8vw,4.8rem)] text-ink max-md:text-cream leading-[1.12] tracking-tight max-w-5xl select-none lg:flex-1"
           >
             {[
               "We", "do", "not", "furnish", "spaces.", "We", "anchor", "them.",
@@ -71,7 +74,7 @@ export function Statement() {
                 <span
                   key={i}
                   className={`statement-word inline-block mr-[0.28em] transition-opacity duration-150 ${
-                    isAccent ? 'italic font-normal underline decoration-red/50 underline-offset-8 text-ink' : 'text-ink'
+                    isAccent ? 'italic font-normal underline decoration-red/50 max-md:decoration-cream/60 underline-offset-8 text-ink max-md:text-cream' : 'text-ink max-md:text-cream'
                   }`}
                   style={{ opacity: 1 }}
                 >
@@ -97,27 +100,27 @@ export function Statement() {
             </figure>
             <div className="flex lg:flex-col gap-8 lg:gap-6">
             <div>
-              <div className="font-serif text-4xl sm:text-5xl text-ink leading-none">12</div>
-              <div className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-2">Pieces in the<br />Collection</div>
+              <div className="font-serif text-4xl sm:text-5xl text-ink max-md:text-cream leading-none">12</div>
+              <div className="font-mono text-[10px] text-grey max-md:text-cream/70 uppercase tracking-[0.2em] mt-2">Pieces in the<br />Collection</div>
             </div>
             <div>
-              <div className="font-serif text-4xl sm:text-5xl text-ink leading-none">07</div>
-              <div className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-2">Architectural<br />Categories</div>
+              <div className="font-serif text-4xl sm:text-5xl text-ink max-md:text-cream leading-none">07</div>
+              <div className="font-mono text-[10px] text-grey max-md:text-cream/70 uppercase tracking-[0.2em] mt-2">Architectural<br />Categories</div>
             </div>
             <div>
-              <div className="font-serif text-4xl sm:text-5xl text-red leading-none">24</div>
-              <div className="font-mono text-[10px] text-grey uppercase tracking-[0.2em] mt-2">Pieces per<br />Limited Run</div>
+              <div className="font-serif text-4xl sm:text-5xl text-red max-md:text-cream leading-none">24</div>
+              <div className="font-mono text-[10px] text-grey max-md:text-cream/70 uppercase tracking-[0.2em] mt-2">Pieces per<br />Limited Run</div>
             </div>
             </div>
           </div>
         </div>
 
         {/* Footer Meta Row */}
-        <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-8 border-t border-grey/20">
-          <div className="font-mono text-xs text-grey uppercase tracking-wider">
+        <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-8 border-t border-grey/20 max-md:border-cream/25">
+          <div className="font-mono text-xs text-grey max-md:text-cream/70 uppercase tracking-wider">
             [ Monolithic Joinery • Un-filled Travertine • Heavy Bouclé ]
           </div>
-          <div className="font-serif italic text-xs sm:text-sm text-grey">
+          <div className="font-serif italic text-xs sm:text-sm text-grey max-md:text-cream/70">
             Handcrafted in limited atelier runs of 24 pieces worldwide.
           </div>
         </div>

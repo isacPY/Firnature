@@ -54,8 +54,22 @@ const CategoryRowList = React.memo(function CategoryRowList({ onSelect, isOverla
 });
 
 export function CategoryIndex() {
-  const { setActiveCategory } = useStore();
+  const { setActiveCategory, activeCategory } = useStore();
   const [activeIdx, setActiveIdx] = useState(0);
+
+  // Mobile (<768px) uses a simple scrolling list instead of the pinned
+  // full-screen dual-layer effect — the pinned version is too long and slow
+  // on a phone, and its non-active rows read as faint grey text.
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const onChange = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   const containerRef = useRef(null);
   const baseListRef = useRef(null);
@@ -69,6 +83,7 @@ export function CategoryIndex() {
   }, [setActiveCategory]);
 
   useEffect(() => {
+    if (isMobile) return;
     if (!containerRef.current || !baseListRef.current || !overlayListRef.current) return;
 
     const anim = animateCategoryIndex({
@@ -84,10 +99,11 @@ export function CategoryIndex() {
     return () => {
       if (anim && anim.kill) anim.kill();
     };
-  }, []);
+  }, [isMobile]);
 
   // Thumbnail cross-fade when active category changes
   useEffect(() => {
+    if (isMobile) return;
     const thumbs = [thumbLeftRef.current, thumbRightRef.current].filter(Boolean);
     if (thumbs.length) {
       gsap.killTweensOf(thumbs);
@@ -97,7 +113,74 @@ export function CategoryIndex() {
         { opacity: 1, y: 0, duration: 0.22, ease: 'power2.out', overwrite: 'auto' }
       );
     }
-  }, [activeIdx]);
+  }, [activeIdx, isMobile]);
+
+  // --- Mobile: simple scrolling list, red bar on the selected category ---
+  if (isMobile) {
+    const activeId = DISPLAY_CATEGORIES.some((c) => c.id === activeCategory)
+      ? activeCategory
+      : DISPLAY_CATEGORIES[0].id;
+    const activePos = DISPLAY_CATEGORIES.findIndex((c) => c.id === activeId) + 1;
+
+    return (
+      <section
+        id="category-index"
+        className="relative w-full bg-cream py-10 px-5 select-none"
+        aria-label="Category Index"
+      >
+        <div className="max-w-[1440px] w-full mx-auto">
+          <span className="font-display text-xs text-red tracking-[0.18em] uppercase font-semibold">
+            02 — CATEGORY INDEX
+          </span>
+          <p className="font-serif italic text-xs text-grey mt-0.5">
+            Curated Architectural Taxonomy
+          </p>
+          <p className="font-serif text-sm text-grey leading-relaxed mt-3 max-w-sm">
+            Nine categories, and that is the whole company. Tap any archetype to view it in the catalogue.
+          </p>
+        </div>
+
+        <div className="mt-8">
+          {DISPLAY_CATEGORIES.map((cat) => {
+            const isExclusive = cat.id === 'exclusive';
+            const isActive = cat.id === activeId;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => handleCategorySelect(cat.id)}
+                className={`w-full h-16 flex items-center justify-center cursor-pointer select-none transition-colors duration-200 ${
+                  isActive ? 'bg-red' : 'bg-transparent'
+                }`}
+                aria-pressed={isActive}
+              >
+                <span className={`font-serif text-[2rem] leading-none tracking-tight ${
+                  isActive ? 'italic text-cream font-light' : isExclusive ? 'italic text-red' : 'text-ink'
+                }`}>
+                  {cat.name}
+                  <sup className={`font-mono text-xs ml-2 not-italic ${isActive ? 'text-cream' : 'text-grey'}`}>
+                    (0{cat.count})
+                  </sup>
+                  {isExclusive && (
+                    <span className={`font-mono text-[10px] tracking-[0.25em] ml-3 align-middle border px-2 py-0.5 not-italic ${
+                      isActive ? 'text-cream border-cream/50' : 'text-red border-red/40'
+                    }`}>
+                      Limited
+                    </span>
+                  )}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between text-grey font-mono text-[10px] uppercase tracking-widest pt-6">
+          <span>0{activePos} / 0{DISPLAY_CATEGORIES.length} Archetype Selected</span>
+          <span>Tap any row to jump to catalogue</span>
+        </div>
+      </section>
+    );
+  }
 
   const currentCategory = DISPLAY_CATEGORIES[activeIdx] || DISPLAY_CATEGORIES[0];
 

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { CATEGORIES, PRODUCTS } from '../config/brand';
 import { useStore } from '../state/store';
 import { ProductCard } from './ProductCard';
@@ -9,11 +9,21 @@ export function ProductGrid() {
   const gridContainerRef = useRef(null);
   const headingRef = useRef(null);
 
+  // Mobile-only catalogue sort (the intro block below is md:hidden)
+  const [sort, setSort] = useState('curated');
+
   const filteredProducts = activeCategory === 'all'
     ? PRODUCTS
     : activeCategory === 'exclusive'
       ? PRODUCTS.filter((p) => p.exclusive)
       : PRODUCTS.filter((p) => p.category === activeCategory);
+
+  const sortedProducts =
+    sort === 'name-asc'
+      ? [...filteredProducts].sort((a, b) => a.name.localeCompare(b.name))
+      : sort === 'name-desc'
+        ? [...filteredProducts].sort((a, b) => b.name.localeCompare(a.name))
+        : filteredProducts;
 
   // Stable callbacks so ProductCard memo is never broken
   const handleToggleSave = useCallback((product) => toggleSave(product), [toggleSave]);
@@ -85,6 +95,32 @@ export function ProductGrid() {
           </div>
         </div>
 
+        {/* Mobile-only catalogue intro: punchy framing + sort, above the pills */}
+        <div className="md:hidden pt-8 pb-2">
+          <h3 className="font-serif text-[2rem] text-ink leading-[1.05] tracking-tight">
+            Ready to <em className="font-light">live with.</em>
+          </h3>
+          <p className="font-serif text-sm text-grey leading-relaxed mt-2 max-w-sm">
+            The current collection — finished by hand, in limited runs of 24 pieces.
+          </p>
+          <div className="mt-4 flex items-center gap-2">
+            <label htmlFor="catalogue-sort" className="font-mono text-[10px] text-grey uppercase tracking-widest shrink-0">
+              Sorted by
+            </label>
+            <select
+              id="catalogue-sort"
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              className="pill-btn bg-transparent text-ink border-ink/30 cursor-pointer"
+              aria-label="Sort catalogue"
+            >
+              <option value="curated">Curated</option>
+              <option value="name-asc">Name A–Z</option>
+              <option value="name-desc">Name Z–A</option>
+            </select>
+          </div>
+        </div>
+
         {/* Filter Pills Bar */}
         <div className="py-6 flex items-center justify-between gap-4 overflow-x-auto no-scrollbar select-none">
           <div className="flex items-center gap-2">
@@ -121,7 +157,7 @@ export function ProductGrid() {
           ref={gridContainerRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 pt-4"
         >
-          {filteredProducts.map((product) => (
+          {sortedProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}

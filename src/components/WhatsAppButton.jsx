@@ -8,7 +8,7 @@ export function WhatsAppButton() {
   return (
     <aside
       aria-label="Direct Showroom Concierge"
-      className="fixed bottom-6 right-6 z-40"
+      className="fixed bottom-6 right-6 z-40 hidden md:block"
     >
       <a
         href={url}

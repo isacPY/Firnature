@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { ArrowUpRight, Mail, Phone, MapPin, Instagram, Globe } from 'lucide-react';
 import { BRAND_CONFIG, buildWhatsAppUrl } from '../config/brand';
 import { useStore } from '../state/store';
@@ -9,6 +9,10 @@ import { scrollTo } from '../animations';
 export function Footer() {
   const { toggleDeviceEndCard, customBrandName, openAppointment } = useStore();
   const wordmarkRef = useRef(null);
+
+  // Mobile-only newsletter capture (no backend on the demo — confirms inline)
+  const [email, setEmail] = useState('');
+  const [emailJoined, setEmailJoined] = useState(false);
 
   useEffect(() => {
     if (!wordmarkRef.current) return;
@@ -39,7 +43,46 @@ export function Footer() {
       aria-label="Atelier Footer"
     >
       <div className="max-w-[1440px] mx-auto">
-        
+
+        {/* Mobile-only newsletter band — red, like the manifesto band */}
+        <div className="md:hidden bg-red -mx-5 sm:-mx-8 px-5 sm:px-8 py-10 mb-14">
+          <h2 className="font-serif text-[1.9rem] text-cream leading-[1.08] tracking-tight">
+            One letter a month. New pieces, private viewings, nothing else.
+          </h2>
+          {emailJoined ? (
+            <p className="font-serif italic text-cream text-base mt-4">
+              You are on the list — welcome to the atelier.
+            </p>
+          ) : (
+            <form
+              className="mt-5 flex items-center gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (email.trim().includes('@')) setEmailJoined(true);
+              }}
+            >
+              <label htmlFor="footer-newsletter-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="footer-newsletter-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                className="flex-1 min-w-0 bg-transparent border border-cream/60 text-cream placeholder:text-cream/60 px-4 py-3 text-sm outline-none focus:border-cream"
+              />
+              <button
+                type="submit"
+                className="shrink-0 border border-cream text-cream px-4 py-3 text-xs font-sans uppercase tracking-wider hover:bg-cream hover:text-red transition-colors"
+              >
+                Join the list
+              </button>
+            </form>
+          )}
+        </div>
+
         {/* Top Grid: Manifesto & Atelier Contacts */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 sm:gap-16 pb-16 border-b border-cream/15">
           
@@ -166,7 +209,7 @@ export function Footer() {
           <div className="inline-block overflow-hidden leading-[0.8] tracking-[-0.03em]">
             <MaskedLetters
               text={displayWordmark}
-              className="footer-wordmark-letter font-display uppercase text-cream/90 text-[clamp(4.5rem,18.5vw,22rem)] inline-block will-change-transform"
+              className="footer-wordmark-letter font-display uppercase text-cream/90 text-[clamp(4.5rem,18.5vw,22rem)] max-md:text-[clamp(3.25rem,15vw,6rem)] inline-block will-change-transform"
             />
           </div>
         </div>
