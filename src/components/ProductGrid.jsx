@@ -17,7 +17,7 @@ export function ProductGrid() {
 
   // Stable callbacks so ProductCard memo is never broken
   const handleToggleSave = useCallback((product) => toggleSave(product), [toggleSave]);
-  const handleAddToBag   = useCallback((product) => addToBag(product),   [addToBag]);
+  const handleAddToBag   = useCallback((product, swatch) => addToBag(product, swatch), [addToBag]);
 
   useEffect(() => {
     if (!gridContainerRef.current) return;

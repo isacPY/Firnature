@@ -16,6 +16,7 @@ import { BagDrawer } from './components/BagDrawer';
 import { SavedDrawer } from './components/SavedDrawer';
 import { SearchOverlay } from './components/SearchOverlay';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { ErrorBoundary } from './components/ErrorBoundary';
 // Click-only / pitch-only pieces load on demand, not in the first paint.
 // This keeps the initial bundle smaller (Performance / TBT) — they are
 // only needed when a user opens a modal or ?pitch=1 is present.
@@ -46,6 +47,7 @@ export default function App() {
   }, []);
 
   return (
+    <ErrorBoundary>
     <div className="min-h-screen bg-cream text-ink relative selection:bg-red selection:text-cream">
       {/* Subtle Tactile Museum Cotton Paper Grain (Removes digital monitor flatness) */}
       <div className="editorial-grain" aria-hidden="true" />
@@ -89,5 +91,6 @@ export default function App() {
         <PresentationBar />
       </Suspense>
     </div>
+    </ErrorBoundary>
   );
 }

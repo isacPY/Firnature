@@ -225,7 +225,7 @@ export const ProductCard = React.memo(function ProductCard({
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              onAddToBag(product);
+              onAddToBag(product, activeSwatchIndex > 0 ? currentSwatch : null);
             }}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-ink text-cream hover:bg-red font-mono text-[10px] uppercase tracking-wider transition-colors cursor-pointer"
             aria-label={`Add ${product.name} to acquisition inquiry`}

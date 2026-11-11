@@ -347,7 +347,7 @@ export function buildWhatsAppUrl(items = [], customNote = null) {
     const qty = item.quantity || 1;
     text += `${index + 1}. ${name} — Qty: ${qty}\n`;
     if (prod.materials) {
-      text += `   Finish: ${prod.materials}\n`;
+      text += `   Finish: ${prod.selectedFinish ? `${prod.selectedFinish} — ` : ''}${prod.materials}\n`;
     }
   });
 

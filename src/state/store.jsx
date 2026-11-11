@@ -157,15 +157,28 @@ export function StoreProvider({ children }) {
     }
   }, [bagItems]);
 
-  const addToBag = useCallback((product) => {
+  const addToBag = useCallback((product, swatch = null) => {
     setBagItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
+      // A non-default finish is a different bag line from the default one:
+      // the same piece in Chalk Linen must not merge with the same piece
+      // in Carmine Bouclé, and removal / quantity must target the right line.
+      const bagId = swatch ? `${product.id}::${swatch.id}` : product.id;
+      const existing = prev.find((item) => item.id === bagId);
       if (existing) {
         return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === bagId ? { ...item, quantity: item.quantity + 1 } : item
         );
       }
-      return [...prev, { ...product, quantity: 1 }];
+      const bagItem = swatch
+        ? {
+            ...product,
+            id: bagId,
+            image: swatch.image || product.image,
+            selectedFinish: swatch.name,
+            quantity: 1,
+          }
+        : { ...product, quantity: 1 };
+      return [...prev, bagItem];
     });
     setIsBagOpen(true);
   }, []);

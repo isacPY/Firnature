@@ -5,18 +5,18 @@ import { PRODUCTS } from '../config/brand';
 import { getLocalSrcset } from '../utils/placeholders';
 
 export function DeviceEndCard() {
-  const { isDeviceEndCardOpen, setIsDeviceEndCardOpen } = useStore();
+  const { isDeviceEndCardOpen, toggleDeviceEndCard } = useStore();
   const [viewportMode, setViewportMode] = useState('desktop');
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isDeviceEndCardOpen) {
-        setIsDeviceEndCardOpen(false);
+        toggleDeviceEndCard();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isDeviceEndCardOpen, setIsDeviceEndCardOpen]);
+  }, [isDeviceEndCardOpen, toggleDeviceEndCard]);
 
   if (!isDeviceEndCardOpen) return null;
 
@@ -25,14 +25,14 @@ export function DeviceEndCard() {
       role="dialog"
       aria-label="Responsive Pitch Demonstration"
       className="fixed inset-0 z-50 bg-ink/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-300"
-      onClick={() => setIsDeviceEndCardOpen(false)}
+      onClick={toggleDeviceEndCard}
     >
       <div 
         className="relative max-w-4xl w-full bg-cream p-6 sm:p-8 rounded-lg shadow-2xl border border-red max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={() => setIsDeviceEndCardOpen(false)}
+          onClick={toggleDeviceEndCard}
           className="absolute top-4 right-4 p-2 text-ink hover:text-red transition-colors cursor-pointer"
           aria-label="Close pitch mockup"
         >

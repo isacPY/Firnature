@@ -116,7 +116,7 @@ export function BagDrawer() {
                           </button>
                         </div>
                         <p className="font-serif italic text-xs text-grey mt-0.5 line-clamp-1">
-                          {p.materials}
+                          {p.selectedFinish ? `${p.selectedFinish} • ` : ''}{p.materials}
                         </p>
                         <p className="font-mono text-[10px] text-grey mt-0.5">
                           {p.dimensions}
