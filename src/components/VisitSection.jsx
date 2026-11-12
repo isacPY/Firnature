@@ -11,7 +11,7 @@ export function VisitSection() {
   return (
     <section
       id="contact"
-      className="relative w-full bg-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 select-none"
+      className="relative w-full bg-ink text-cream py-16 sm:py-24 px-5 sm:px-8 border-b border-red/20 select-none"
       aria-label="Showroom Visit and Inquiries"
     >
       <div className="max-w-[1440px] mx-auto">
@@ -37,8 +37,8 @@ export function VisitSection() {
           <span className="font-display text-xs sm:text-sm text-red tracking-[0.15em] uppercase block mb-1">
             06 — PRIVATE VISITATION & SHOWROOM
           </span>
-          <h2 className="font-serif text-[clamp(2.4rem,4.5vw,4.5rem)] text-ink leading-[0.95] tracking-tight">
-            Experience the Collection in Person.
+          <h2 className="font-serif text-[clamp(2.4rem,4.5vw,4.5rem)] text-cream leading-[0.95] tracking-tight">
+            Experience the Collection <span className="italic text-cream/90">in Person.</span>
           </h2>
         </div>
 
@@ -49,17 +49,17 @@ export function VisitSection() {
             <div className="space-y-8">
               {/* Showroom Address */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center shrink-0 mt-1">
+                <div className="w-10 h-10 rounded-full border border-cream/25 flex items-center justify-center shrink-0 mt-1">
                   <MapPin className="w-4 h-4 text-red" />
                 </div>
                 <div>
                   <h3 className="font-display text-sm tracking-widest text-red uppercase">
                     {showroom.title}
                   </h3>
-                  <p className="font-serif text-lg text-ink mt-1">
+                  <p className="font-serif text-lg text-cream mt-1">
                     {showroom.address}
                   </p>
-                  <p className="font-serif text-base text-grey">
+                  <p className="font-serif text-base text-cream/70">
                     {showroom.city}, {showroom.country}
                   </p>
                   <a
@@ -76,18 +76,18 @@ export function VisitSection() {
 
               {/* Hours */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center shrink-0 mt-1">
+                <div className="w-10 h-10 rounded-full border border-cream/25 flex items-center justify-center shrink-0 mt-1">
                   <Clock className="w-4 h-4 text-red" />
                 </div>
                 <div>
                   <h3 className="font-display text-sm tracking-widest text-red uppercase">
                     SHOWROOM HOURS
                   </h3>
-                  <div className="mt-2 space-y-1.5 font-serif text-sm sm:text-base text-ink">
+                  <div className="mt-2 space-y-1.5 font-serif text-sm sm:text-base text-cream">
                     {showroom.hours.map((h, i) => (
                       <div key={i} className="flex items-baseline justify-between gap-6 max-w-sm">
-                        <span className="text-grey">{h.days}</span>
-                        <span className="font-mono text-xs text-ink">{h.time}</span>
+                        <span className="text-cream/70">{h.days}</span>
+                        <span className="font-mono text-xs text-cream">{h.time}</span>
                       </div>
                     ))}
                   </div>
@@ -96,19 +96,19 @@ export function VisitSection() {
 
               {/* Inquiries & Phone */}
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-ink/20 flex items-center justify-center shrink-0 mt-1">
+                <div className="w-10 h-10 rounded-full border border-cream/25 flex items-center justify-center shrink-0 mt-1">
                   <Phone className="w-4 h-4 text-red" />
                 </div>
                 <div>
                   <h3 className="font-display text-sm tracking-widest text-red uppercase">
                     DIRECT INQUIRIES
                   </h3>
-                  <p className="font-serif text-lg text-ink mt-1">
+                  <p className="font-serif text-lg text-cream mt-1">
                     <a href={`tel:+${showroom.phone.replace(/[^0-9]/g, '')}`} className="hover:text-red transition-colors">
                       {showroom.displayPhone}
                     </a>
                   </p>
-                  <p className="font-serif text-sm text-grey">
+                  <p className="font-serif text-sm text-cream/70">
                     <a href={`mailto:${showroom.email}`} className="hover:underline">
                       {showroom.email}
                     </a>
@@ -131,7 +131,7 @@ export function VisitSection() {
 
               <a
                 href={`tel:+${showroom.phone.replace(/[^0-9]/g, '')}`}
-                className="px-8 py-3.5 rounded-full border border-ink text-ink font-sans text-xs tracking-widest uppercase flex items-center justify-center gap-2 hover:border-red hover:text-red transition-colors duration-300"
+                className="px-8 py-3.5 rounded-full border border-cream/40 text-cream font-sans text-xs tracking-widest uppercase flex items-center justify-center gap-2 hover:border-red hover:text-red transition-colors duration-300"
               >
                 <Phone className="w-4 h-4" />
                 <span>Call Showroom</span>
@@ -141,7 +141,7 @@ export function VisitSection() {
           </div>
 
           {/* Right Column: Architectural Map View */}
-          <div className="lg:col-span-6 min-h-[380px] w-full rounded-sm overflow-hidden border border-grey/30 relative bg-ink/5">
+          <div className="lg:col-span-6 min-h-[380px] w-full rounded-sm overflow-hidden border border-cream/25 relative bg-cream/5">
             <iframe
               title="Showroom Location Map"
               src={showroom.mapEmbedUrl}

@@ -178,8 +178,9 @@ the above is the delivery.
   catalogue moved earlier in the page and the preloader/hero gate the
   largest paint. Accepted for the sale; a proper LCP pass is post-deal
   work, not a pre-sale fix.
-- **Hero has no primary CTA.** The hero is a pure statement; adding a
-  "Book a Viewing" button is an open decision, not an oversight.
+- **Hero has no primary CTA.** The hero is a pure statement; the
+  always-visible booking action is the red "Book a Viewing" pill in the
+  nav (patch 14), which opens the private-viewing modal on every screen.
 - **No analytics.** Nothing is tracked. Add it after a deal, with the
   buyer's consent.
 - **Error handling:** an error boundary wraps the whole app, so a render
@@ -205,3 +206,39 @@ scripts/verify-pitch.mjs   `npm test` — 31 policy checks (zero-price,
 Verify before calling a change good: `npm test` (31/31), `npm run build`,
 then a render check in a real browser. Build and tests alone do not catch
 render crashes — they never execute the components.
+
+## 12. Patch 14 — design-inspiration build (2026-11-12)
+
+Seven ideas taken from the 9 design-inspiration galleries
+(OnePageLove, Fonts In Use, Httpster, Minimal.gallery, Dark Mode Design,
+Land-book, Hoverstat, Landing.love, SiteInspire), all built from existing
+assets and tokens — no new photos, no prices, no new colours:
+
+1. **Muuto hero** (Hero.jsx): the hero photo is full-bleed; one piece
+   (Monolith) with huge cream condensed type over it, a designer credit
+   ("Travertine Table — by Atelier"), and the category index as a
+   clickable vertical stack on the photo's right edge (desktop only).
+2. **Horizontal room showcase** (RoomShowcase.jsx): the room section is a
+   snap-scrolling horizontal strip — the full room, then one large panel
+   per piece in it (L'Arc, Monolith, Totem) — with a 0X / 04 counter and
+   prev/next arrows. Native swipe on mobile.
+3. **Swatch recolour** (ProductCard.jsx): tapping a finish already swapped
+   the card photo to that finish's image; patch 14 adds a fade-in so the
+   change reads as a recolour, not a hard cut.
+4. **Book a Viewing pill** (Nav.jsx): a red pill in the header (desktop /
+   tablet) that opens the private-viewing modal. Hidden on mobile, where
+   the menu already has Private Viewing.
+5. **Dark ink booking section** (VisitSection.jsx): the visit/showroom
+   block is now bg-ink with cream text and the headline's "in Person" in
+   serif italic, so the booking moment contrasts with the cream catalogue.
+6. **Benefit strip** (Hero.jsx): three promises under the hero —
+   "Private viewing — by appointment", "White-glove delivery",
+   "Limited runs of 24".
+7. **Hotspot view swap** (RoomShowcase.jsx): tapping a room hotspot scrolls
+   the strip to that piece's panel (the old tooltip card is gone — the
+   piece panel carries the same details + View in Catalogue). Hovering a
+   hotspot shows the piece name.
+
+Verified: tests 31/31, build passes, desktop 1440px + mobile 390px render
+checks all pass (hero overlay, index, rooms strip, hotspot scroll, swatch
+swap, dark visit, no overflow, zero errors).

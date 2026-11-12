@@ -44,13 +44,14 @@ export const ProductCard = React.memo(function ProductCard({
         {/* Main Product Image */}
         <div className="product-photo w-full h-full will-change-transform">
           <img
+            key={displayImage}
             src={displayImage}
             {...(displaySrcset ? { srcSet: displaySrcset.srcSet, sizes: displaySrcset.sizes } : {})}
             onError={(e) => handleImageFallback(e, product.category)}
             alt={product.name}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 animate-in fade-in duration-300"
           />
         </div>
 

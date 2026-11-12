@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShoppingBag, Bookmark, Search, Menu } from 'lucide-react';
+import { ShoppingBag, Bookmark, Search, Menu, Calendar } from 'lucide-react';
 import { BRAND_CONFIG } from '../config/brand';
 import { useStore } from '../state/store';
 import { scrollTo } from '../animations';
@@ -108,6 +108,17 @@ export function Nav() {
             <span className="inline-flex items-center justify-center font-mono text-[10px] font-semibold text-red">
               ({bagCount})
             </span>
+          </button>
+
+          {/* Book a Private Viewing — always visible in the nav */}
+          <button
+            type="button"
+            onClick={() => openAppointment()}
+            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-red text-cream font-mono text-[10px] uppercase tracking-wider hover:bg-ink transition-colors duration-200 cursor-pointer"
+            aria-label="Book a private viewing"
+          >
+            <Calendar className="w-3 h-3" />
+            <span>Book a Viewing</span>
           </button>
 
           {/* Mobile Hamburger Menu */}
