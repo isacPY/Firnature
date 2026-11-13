@@ -92,22 +92,46 @@ export function CategoryIndex() {
   // Mobile: as the user scrolls through the index, the red bar + thumbnails
   // follow the row nearest the viewport centre; when they stop scrolling,
   // the images for that category are showing. Tapping a row still selects it.
+  //
+  // This measures every row's distance to the viewport centre on each scroll
+  // frame. The previous IntersectionObserver was the bug: its callback only
+  // saw the rows in that one batch, so the bar snapped to whichever row had
+  // just crossed a threshold (even one barely entering the band) instead of
+  // the row actually centred — the bar jumped to the wrong row and the
+  // counter disagreed with where the user was.
   useEffect(() => {
     if (!isMobile) return;
-    const rows = Array.from(document.querySelectorAll('#category-index button'));
-    if (!rows.length) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (!visible.length) return;
-        visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        const id = visible[0].target.getAttribute('data-cat-id');
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const rows = Array.from(document.querySelectorAll('#category-index button'));
+      if (!rows.length) return;
+      const centre = window.innerHeight / 2;
+      let best = null;
+      let bestDist = Number.POSITIVE_INFINITY;
+      for (const row of rows) {
+        const r = row.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        const dist = Math.abs((r.top + r.bottom) / 2 - centre);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = row;
+        }
+      }
+      if (best) {
+        const id = best.getAttribute('data-cat-id');
         if (id) setScrollActiveId((prev) => (prev === id ? prev : id));
-      },
-      { rootMargin: '-42% 0px -42% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
-    );
-    rows.forEach((row) => observer.observe(row));
-    return () => observer.disconnect();
+      }
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, [isMobile]);
 
   useEffect(() => {

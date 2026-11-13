@@ -242,3 +242,25 @@ assets and tokens — no new photos, no prices, no new colours:
 Verified: tests 31/31, build passes, desktop 1440px + mobile 390px render
 checks all pass (hero overlay, index, rooms strip, hotspot scroll, swatch
 swap, dark visit, no overflow, zero errors).
+
+## 13. Patch 15 — Category Index scroll-tracking fix (2026-11-14)
+
+The mobile index's red bar was snapping to the WRONG row and moving on its
+own. Cause: patch 13 used an IntersectionObserver whose callback only saw
+the rows in that one callback batch, so the bar jumped to whichever row had
+just crossed a threshold — even one barely entering the band — instead of
+the row actually centred. The counter disagreed with the bar for the same
+reason. Fix (CategoryIndex.jsx only): on each scroll frame
+(requestAnimationFrame-throttled), measure every row's distance to the
+viewport centre with getBoundingClientRect and follow the nearest one.
+The bar now changes exactly once per row boundary as you scroll, the
+counter always matches the bar, and the bar does not move after you stop
+scrolling. Verified by a mobile 390px scroll check (bar == nearest row,
+counter agrees, monotonic, no self-movement, zero errors).
+
+Note: the test script's AST audit flags `Infinity` as an undeclared global
+(it is not in KNOWN_GLOBALS) — use `Number.POSITIVE_INFINITY` instead.
+(The audit's error message is itself misleading: the `Program(path)`
+callback shadows Node's `path` module, so a real undeclared-global
+failure surfaces as "Failed to parse AST: path.relative is not a
+function".)
